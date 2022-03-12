@@ -36,17 +36,22 @@
             this.lbEventsToDevice = new System.Windows.Forms.TextBox();
             this.btnSendToDevice = new System.Windows.Forms.Button();
             this.tbMsg = new System.Windows.Forms.TextBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btnRReported = new System.Windows.Forms.Button();
+            this.btnWDesired = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.tbDeviceId = new System.Windows.Forms.TextBox();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
             // 
             this.tabControl.Controls.Add(this.tabPage1);
             this.tabControl.Controls.Add(this.tabPage2);
+            this.tabControl.Controls.Add(this.tabPage3);
             this.tabControl.Location = new System.Drawing.Point(5, 41);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
@@ -77,9 +82,8 @@
             // 
             // lbEventsFromDevice
             // 
-            this.lbEventsFromDevice.Multiline = true;
-            this.lbEventsFromDevice.Height = 20;
             this.lbEventsFromDevice.Location = new System.Drawing.Point(13, 59);
+            this.lbEventsFromDevice.Multiline = true;
             this.lbEventsFromDevice.Name = "lbEventsFromDevice";
             this.lbEventsFromDevice.Size = new System.Drawing.Size(761, 584);
             this.lbEventsFromDevice.TabIndex = 0;
@@ -99,9 +103,8 @@
             // 
             // lbEventsToDevice
             // 
-            this.lbEventsToDevice.Multiline = true;
-            this.lbEventsToDevice.Height = 20;
             this.lbEventsToDevice.Location = new System.Drawing.Point(14, 66);
+            this.lbEventsToDevice.Multiline = true;
             this.lbEventsToDevice.Name = "lbEventsToDevice";
             this.lbEventsToDevice.Size = new System.Drawing.Size(760, 564);
             this.lbEventsToDevice.TabIndex = 2;
@@ -122,6 +125,37 @@
             this.tbMsg.Name = "tbMsg";
             this.tbMsg.Size = new System.Drawing.Size(594, 27);
             this.tbMsg.TabIndex = 1;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.btnRReported);
+            this.tabPage3.Controls.Add(this.btnWDesired);
+            this.tabPage3.Location = new System.Drawing.Point(4, 29);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(780, 657);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "DeviceTwin";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // btnRReported
+            // 
+            this.btnRReported.Location = new System.Drawing.Point(9, 68);
+            this.btnRReported.Name = "btnRReported";
+            this.btnRReported.Size = new System.Drawing.Size(162, 29);
+            this.btnRReported.TabIndex = 1;
+            this.btnRReported.Text = "read Reported";
+            this.btnRReported.UseVisualStyleBackColor = true;
+            this.btnRReported.Click += new System.EventHandler(this.btnRReported_Click);
+            // 
+            // btnWDesired
+            // 
+            this.btnWDesired.Location = new System.Drawing.Point(9, 21);
+            this.btnWDesired.Name = "btnWDesired";
+            this.btnWDesired.Size = new System.Drawing.Size(162, 29);
+            this.btnWDesired.TabIndex = 0;
+            this.btnWDesired.Text = "write Desired";
+            this.btnWDesired.UseVisualStyleBackColor = true;
+            this.btnWDesired.Click += new System.EventHandler(this.btnWDesired_Click);
             // 
             // label1
             // 
@@ -153,8 +187,10 @@
             this.Text = "Backend";
             this.tabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -172,5 +208,8 @@
         private System.Windows.Forms.Button btnSendToDevice;
         private System.Windows.Forms.TextBox tbMsg;
         private System.Windows.Forms.TextBox lbEventsToDevice;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Button btnRReported;
+        private System.Windows.Forms.Button btnWDesired;
     }
 }

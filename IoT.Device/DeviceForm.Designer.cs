@@ -38,6 +38,9 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.lbStartReceiving = new System.Windows.Forms.TextBox();
             this.btnStartReceiving = new System.Windows.Forms.Button();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btnRDesired = new System.Windows.Forms.Button();
+            this.btnWReported = new System.Windows.Forms.Button();
             this.tbDeviceId = new System.Windows.Forms.TextBox();
             this.tbAssignedHub = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -45,6 +48,7 @@
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbMsg
@@ -76,9 +80,8 @@
             // 
             // lbStatusSend
             // 
-            this.lbStatusSend.Multiline = true;
-            this.lbStatusSend.Height = 20;
             this.lbStatusSend.Location = new System.Drawing.Point(23, 65);
+            this.lbStatusSend.Multiline = true;
             this.lbStatusSend.Name = "lbStatusSend";
             this.lbStatusSend.Size = new System.Drawing.Size(767, 564);
             this.lbStatusSend.TabIndex = 3;
@@ -96,6 +99,7 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Location = new System.Drawing.Point(12, 60);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -130,9 +134,8 @@
             // 
             // lbStartReceiving
             // 
-            this.lbStartReceiving.Multiline = true;
-            this.lbStartReceiving.Height = 20;
             this.lbStartReceiving.Location = new System.Drawing.Point(6, 64);
+            this.lbStartReceiving.Multiline = true;
             this.lbStartReceiving.Name = "lbStartReceiving";
             this.lbStartReceiving.Size = new System.Drawing.Size(798, 564);
             this.lbStartReceiving.TabIndex = 1;
@@ -146,6 +149,37 @@
             this.btnStartReceiving.Text = "Receive";
             this.btnStartReceiving.UseVisualStyleBackColor = true;
             this.btnStartReceiving.Click += new System.EventHandler(this.btnStartReceiving_Click);
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.btnRDesired);
+            this.tabPage3.Controls.Add(this.btnWReported);
+            this.tabPage3.Location = new System.Drawing.Point(4, 29);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(810, 636);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "DeviceTwin";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // btnRDesired
+            // 
+            this.btnRDesired.Location = new System.Drawing.Point(62, 56);
+            this.btnRDesired.Name = "btnRDesired";
+            this.btnRDesired.Size = new System.Drawing.Size(202, 29);
+            this.btnRDesired.TabIndex = 1;
+            this.btnRDesired.Text = "read Desired";
+            this.btnRDesired.UseVisualStyleBackColor = true;
+            this.btnRDesired.Click += new System.EventHandler(this.btnRDesired_Click);
+            // 
+            // btnWReported
+            // 
+            this.btnWReported.Location = new System.Drawing.Point(62, 11);
+            this.btnWReported.Name = "btnWReported";
+            this.btnWReported.Size = new System.Drawing.Size(202, 29);
+            this.btnWReported.TabIndex = 0;
+            this.btnWReported.Text = "write Reported";
+            this.btnWReported.UseVisualStyleBackColor = true;
+            this.btnWReported.Click += new System.EventHandler(this.btnWReported_Click);
             // 
             // tbDeviceId
             // 
@@ -200,6 +234,8 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -221,5 +257,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnStartReceiving;
         private System.Windows.Forms.TextBox lbStartReceiving;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Button btnRDesired;
+        private System.Windows.Forms.Button btnWReported;
     }
 }

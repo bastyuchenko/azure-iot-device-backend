@@ -5,11 +5,13 @@ using System.IO;
 using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Azure.Devices.Client;
 using Microsoft.Azure.Devices.Provisioning.Client;
 using Microsoft.Azure.Devices.Provisioning.Client.Transport;
 using Microsoft.Azure.Devices.Shared;
+using Newtonsoft.Json;
 using Message = Microsoft.Azure.Devices.Client.Message;
 
 namespace IoT.Device
@@ -128,6 +130,27 @@ namespace IoT.Device
             ///     Mqtt_WebSocket_Only, Mqtt_Tcp_Only, Amqp, Amqp_WebSocket_Only, Amqp_Tcp_only, and Http1.
             /// </summary>
             public TransportType TransportType = TransportType.Amqp;
+        }
+
+        private async void btnWReported_Click(object sender, EventArgs e)
+        {
+            TwinCollection reportedProperties, connectivity;
+            reportedProperties = new TwinCollection();
+            connectivity = new TwinCollection();
+            connectivity["type"] = "cellular";
+            reportedProperties["connectivity"] = connectivity;
+            await iotClient.UpdateReportedPropertiesAsync(reportedProperties);
+        }
+
+        private async void btnRDesired_Click(object sender, EventArgs e)
+        {
+            await iotClient.SetDesiredPropertyUpdateCallbackAsync(OnDesiredPropertyChanged, null);
+        }
+
+        private static async Task OnDesiredPropertyChanged(TwinCollection desiredProperties,
+            object userContext)
+        {
+            MessageBox.Show(JsonConvert.SerializeObject(desiredProperties));
         }
     }
 }

@@ -19,24 +19,25 @@ namespace IoT.Backend
 
         private Parameters _parameters;
 
+        private RegistryManager registryManager;
+
         public BackForm()
         {
-            var paramSend = new Parameters();
+            _parameters = new Parameters();
 
             var options = new ServiceClientOptions
             {
                 SdkAssignsMessageId = SdkAssignsMessageId.WhenUnset
             };
-            _serviceClient =
-                ServiceClient.CreateFromConnectionString(paramSend.IoTHubConnectionString, paramSend.TransportType,
-                    options);
+
+            _serviceClient = ServiceClient.CreateFromConnectionString(_parameters.IoTHubConnectionString, _parameters.TransportType, options);
+            registryManager = RegistryManager.CreateFromConnectionString(_parameters.IoTHubConnectionString);
+
             InitializeComponent();
         }
 
         private async void btnStartReceiving_Click(object sender, EventArgs e)
         {
-            _parameters = new Parameters();
-
             // Either the connection string must be supplied, or the set of endpoint, name, and shared access key must be.
             if (string.IsNullOrWhiteSpace(_parameters.EventHubConnectionString)) MessageBox.Show("error");
 
@@ -103,7 +104,7 @@ namespace IoT.Backend
         private void PrintProperties(KeyValuePair<string, object> prop)
         {
             var propValue = prop.Value is DateTime
-                ? ((DateTime) prop.Value).ToString("O") // using a built-in date format here that includes milliseconds
+                ? ((DateTime)prop.Value).ToString("O") // using a built-in date format here that includes milliseconds
                 : prop.Value.ToString();
 
             lbEventsFromDevice.Text += $"\r\n\t\t{prop.Key}: {propValue}";
@@ -179,6 +180,28 @@ namespace IoT.Backend
             public string IoTHubConnectionString = ConfigurationSettings.AppSettings["IoTHubConnectionString"];
 
             public TransportType TransportType = TransportType.Amqp;
+        }
+
+        private async void btnWDesired_Click(object sender, EventArgs e)
+        {
+            var twin = await registryManager.GetTwinAsync(_parameters.DeviceId);
+
+            var patch =
+                @"{
+                    properties: {
+                        desired: {
+                          customKey: 'customValue'
+                        }
+                    }
+                }";
+
+            await registryManager.UpdateTwinAsync(twin.DeviceId, patch, twin.ETag);
+        }
+
+        private async void btnRReported_Click(object sender, EventArgs e)
+        {
+            var twin = await registryManager.GetTwinAsync(_parameters.DeviceId);
+            MessageBox.Show(twin.ToJson());
         }
     }
 }
