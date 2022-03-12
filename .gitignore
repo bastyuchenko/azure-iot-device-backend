@@ -1,0 +1,11 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/IoT.Backend/bin
+/IoT.Backend/obj
+/IoT.Device/bin
+/IoT.Device/obj
+*.config
+*.cer
+*.pfx
