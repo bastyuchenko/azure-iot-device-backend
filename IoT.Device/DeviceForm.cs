@@ -12,6 +12,7 @@ using Microsoft.Azure.Devices.Provisioning.Client;
 using Microsoft.Azure.Devices.Provisioning.Client.Transport;
 using Microsoft.Azure.Devices.Shared;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Message = Microsoft.Azure.Devices.Client.Message;
 
 namespace IoT.Device
@@ -151,6 +152,20 @@ namespace IoT.Device
             object userContext)
         {
             MessageBox.Show(JsonConvert.SerializeObject(desiredProperties));
+        }
+
+        private async void btnGenStream_Click(object sender, EventArgs e)
+        {
+            JArray array = JArray.Parse(tbMsgsExample.Text);
+            while (true)
+            {
+                foreach (JToken token in array)
+                {
+                    var message = new Message(Encoding.UTF8.GetBytes(token.ToString()));
+                    await iotClient.SendEventAsync(message);
+                    await Task.Delay(TimeSpan.FromMilliseconds(500));
+                }
+            }
         }
     }
 }

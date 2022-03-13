@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Device));
             this.tbMsg = new System.Windows.Forms.TextBox();
             this.btnSendMsg = new System.Windows.Forms.Button();
             this.btnRegister = new System.Windows.Forms.Button();
@@ -45,10 +46,14 @@
             this.tbAssignedHub = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.btnGenStream = new System.Windows.Forms.Button();
+            this.tbMsgsExample = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbMsg
@@ -100,6 +105,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Location = new System.Drawing.Point(12, 60);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -217,6 +223,36 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "Assigned Hub";
             // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.tbMsgsExample);
+            this.tabPage4.Controls.Add(this.btnGenStream);
+            this.tabPage4.Location = new System.Drawing.Point(4, 29);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(810, 636);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Generate stream";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // btnGenStream
+            // 
+            this.btnGenStream.Location = new System.Drawing.Point(8, 10);
+            this.btnGenStream.Name = "btnGenStream";
+            this.btnGenStream.Size = new System.Drawing.Size(168, 29);
+            this.btnGenStream.TabIndex = 0;
+            this.btnGenStream.Text = "Generate stream";
+            this.btnGenStream.UseVisualStyleBackColor = true;
+            this.btnGenStream.Click += new System.EventHandler(this.btnGenStream_Click);
+            // 
+            // tbMsgsExample
+            // 
+            this.tbMsgsExample.Location = new System.Drawing.Point(9, 50);
+            this.tbMsgsExample.Multiline = true;
+            this.tbMsgsExample.Name = "tbMsgsExample";
+            this.tbMsgsExample.Size = new System.Drawing.Size(785, 562);
+            this.tbMsgsExample.TabIndex = 1;
+            this.tbMsgsExample.Text = resources.GetString("tbMsgsExample.Text");
+            // 
             // Device
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -236,6 +272,8 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -260,5 +298,8 @@
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Button btnRDesired;
         private System.Windows.Forms.Button btnWReported;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.TextBox tbMsgsExample;
+        private System.Windows.Forms.Button btnGenStream;
     }
 }
