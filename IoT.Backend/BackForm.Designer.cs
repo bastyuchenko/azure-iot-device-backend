@@ -31,9 +31,8 @@
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btnStartReceiving = new System.Windows.Forms.Button();
-            this.lbEventsFromDevice = new System.Windows.Forms.TextBox();
+            this.lbStatus = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.lbEventsToDevice = new System.Windows.Forms.TextBox();
             this.btnSendToDevice = new System.Windows.Forms.Button();
             this.tbMsg = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -55,24 +54,23 @@
             this.tabControl.Location = new System.Drawing.Point(5, 41);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(788, 690);
+            this.tabControl.Size = new System.Drawing.Size(788, 154);
             this.tabControl.TabIndex = 0;
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.btnStartReceiving);
-            this.tabPage1.Controls.Add(this.lbEventsFromDevice);
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(780, 657);
+            this.tabPage1.Size = new System.Drawing.Size(780, 222);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Receive from device";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // btnStartReceiving
             // 
-            this.btnStartReceiving.Location = new System.Drawing.Point(653, 22);
+            this.btnStartReceiving.Location = new System.Drawing.Point(6, 6);
             this.btnStartReceiving.Name = "btnStartReceiving";
             this.btnStartReceiving.Size = new System.Drawing.Size(94, 29);
             this.btnStartReceiving.TabIndex = 1;
@@ -80,34 +78,25 @@
             this.btnStartReceiving.UseVisualStyleBackColor = true;
             this.btnStartReceiving.Click += new System.EventHandler(this.btnStartReceiving_Click);
             // 
-            // lbEventsFromDevice
+            // lbStatus
             // 
-            this.lbEventsFromDevice.Location = new System.Drawing.Point(13, 59);
-            this.lbEventsFromDevice.Multiline = true;
-            this.lbEventsFromDevice.Name = "lbEventsFromDevice";
-            this.lbEventsFromDevice.Size = new System.Drawing.Size(761, 584);
-            this.lbEventsFromDevice.TabIndex = 0;
+            this.lbStatus.Location = new System.Drawing.Point(9, 201);
+            this.lbStatus.Multiline = true;
+            this.lbStatus.Name = "lbStatus";
+            this.lbStatus.Size = new System.Drawing.Size(779, 530);
+            this.lbStatus.TabIndex = 0;
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.lbEventsToDevice);
             this.tabPage2.Controls.Add(this.btnSendToDevice);
             this.tabPage2.Controls.Add(this.tbMsg);
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(780, 657);
+            this.tabPage2.Size = new System.Drawing.Size(780, 222);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Send to device";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // lbEventsToDevice
-            // 
-            this.lbEventsToDevice.Location = new System.Drawing.Point(14, 66);
-            this.lbEventsToDevice.Multiline = true;
-            this.lbEventsToDevice.Name = "lbEventsToDevice";
-            this.lbEventsToDevice.Size = new System.Drawing.Size(760, 564);
-            this.lbEventsToDevice.TabIndex = 2;
             // 
             // btnSendToDevice
             // 
@@ -132,7 +121,7 @@
             this.tabPage3.Controls.Add(this.btnWDesired);
             this.tabPage3.Location = new System.Drawing.Point(4, 29);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(780, 657);
+            this.tabPage3.Size = new System.Drawing.Size(780, 121);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "DeviceTwin";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -181,13 +170,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 743);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.lbStatus);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.tbDeviceId);
             this.Name = "BackForm";
             this.Text = "Backend";
             this.tabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
@@ -202,12 +191,11 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Button btnStartReceiving;
-        private System.Windows.Forms.TextBox lbEventsFromDevice;
+        private System.Windows.Forms.TextBox lbStatus;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbDeviceId;
         private System.Windows.Forms.Button btnSendToDevice;
         private System.Windows.Forms.TextBox tbMsg;
-        private System.Windows.Forms.TextBox lbEventsToDevice;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Button btnRReported;
         private System.Windows.Forms.Button btnWDesired;

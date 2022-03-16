@@ -41,12 +41,12 @@ namespace IoT.Backend
             // Either the connection string must be supplied, or the set of endpoint, name, and shared access key must be.
             if (string.IsNullOrWhiteSpace(_parameters.EventHubConnectionString)) MessageBox.Show("error");
 
-            lbEventsFromDevice.Text += "\r\nIoT Hub Quickstarts - Read device to cloud messages. Ctrl-C to exit.\r\n";
+            lbStatus.Text += "\r\nIoT Hub Quickstarts - Read device to cloud messages. Ctrl-C to exit.\r\n";
 
             // Run the sample
             await ReceiveMessagesFromDeviceAsync(CancellationToken.None);
 
-            lbEventsFromDevice.Text += "\r\nCloud message reader finished.";
+            lbStatus.Text += "\r\nCloud message reader finished.";
         }
 
         // Asynchronously create a PartitionReceiver for a partition and then start
@@ -60,7 +60,7 @@ namespace IoT.Backend
                 EventHubConsumerClient.DefaultConsumerGroupName,
                 _parameters.EventHubConnectionString);
 
-            lbEventsFromDevice.Text += "\r\nListening for messages on all partitions.";
+            lbStatus.Text += "\r\nListening for messages on all partitions.";
 
             try
             {
@@ -76,22 +76,22 @@ namespace IoT.Backend
                 //   https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/eventhub/Azure.Messaging.EventHubs.Processor/README.md
                 await foreach (var partitionEvent in consumer.ReadEventsAsync(ct))
                 {
-                    lbEventsFromDevice.Text +=
+                    lbStatus.Text +=
                         $"\r\nMessage received on partition {partitionEvent.Partition.PartitionId}:";
 
                     var data = Encoding.UTF8.GetString(partitionEvent.Data.Body.ToArray());
-                    lbEventsFromDevice.Text += $"\r\n\tMessage body: {data}";
+                    lbStatus.Text += $"\r\n\tMessage body: {data}";
 
-                    lbEventsFromDevice.Text += "\r\n\tApplication properties (set by device):";
+                    lbStatus.Text += "\r\n\tApplication properties (set by device):";
                     foreach (KeyValuePair<string, object> prop in partitionEvent.Data.Properties) PrintProperties(prop);
 
-                    lbEventsFromDevice.Text += "\r\n\tSystem properties (set by IoT Hub):";
+                    lbStatus.Text += "\r\n\tSystem properties (set by IoT Hub):";
                     foreach (KeyValuePair<string, object> prop in partitionEvent.Data.SystemProperties)
                         PrintProperties(prop);
 
-                    lbEventsFromDevice.Text += "\r\n=====================================";
-                    lbEventsFromDevice.Text += "\r\n=====================================";
-                    lbEventsFromDevice.Text += "\r\n=====================================";
+                    lbStatus.Text += "\r\n=====================================";
+                    lbStatus.Text += "\r\n=====================================";
+                    lbStatus.Text += "\r\n=====================================";
                 }
             }
             catch (TaskCanceledException)
@@ -107,7 +107,7 @@ namespace IoT.Backend
                 ? ((DateTime)prop.Value).ToString("O") // using a built-in date format here that includes milliseconds
                 : prop.Value.ToString();
 
-            lbEventsFromDevice.Text += $"\r\n\t\t{prop.Key}: {propValue}";
+            lbStatus.Text += $"\r\n\t\t{prop.Key}: {propValue}";
         }
 
         private async void btnSendToDevice_Click(object sender, EventArgs e)
@@ -121,7 +121,7 @@ namespace IoT.Backend
         private async Task ReceiveMessageFeedbacksAsync(CancellationToken token)
         {
             // It is important to note that receiver only gets feedback messages when the device is actively running and acting on messages.
-            lbEventsToDevice.Text += "\r\nStarting to listen to feedback messages";
+            lbStatus.Text += "\r\nStarting to listen to feedback messages";
 
             var feedbackReceiver = _serviceClient.GetFeedbackReceiver();
 
@@ -131,12 +131,12 @@ namespace IoT.Backend
                     var feedbackMessages = await feedbackReceiver.ReceiveAsync();
                     if (feedbackMessages != null)
                     {
-                        lbEventsToDevice.Text += "\r\nNew Feedback received:";
-                        lbEventsToDevice.Text += $"\r\n\tEnqueue Time: {feedbackMessages.EnqueuedTime}";
-                        lbEventsToDevice.Text +=
+                        lbStatus.Text += "\r\nNew Feedback received:";
+                        lbStatus.Text += $"\r\n\tEnqueue Time: {feedbackMessages.EnqueuedTime}";
+                        lbStatus.Text +=
                             $"\r\n\tNumber of messages in the batch: {feedbackMessages.Records.Count()}";
                         foreach (var feedbackRecord in feedbackMessages.Records)
-                            lbEventsToDevice.Text +=
+                            lbStatus.Text +=
                                 $"\r\n\tDevice {feedbackRecord.DeviceId} acted on message: {feedbackRecord.OriginalMessageId} with status: {feedbackRecord.StatusCode}";
 
                         await feedbackReceiver.CompleteAsync(feedbackMessages);
@@ -146,7 +146,7 @@ namespace IoT.Backend
                 }
                 catch (Exception e)
                 {
-                    lbEventsToDevice.Text += $"\r\nTransient Exception occurred; will retry: {e}";
+                    lbStatus.Text += $"\r\nTransient Exception occurred; will retry: {e}";
                 }
         }
 
@@ -158,17 +158,17 @@ namespace IoT.Backend
                 Ack = DeliveryAcknowledgement.Full
             };
 
-            lbEventsToDevice.Text += $"\r\nSending C2D message with Id {message.MessageId} to {tbDeviceId.Text}.";
+            lbStatus.Text += $"\r\nSending C2D message with Id {message.MessageId} to {tbDeviceId.Text}.";
 
             try
             {
                 await _serviceClient.SendAsync(tbDeviceId.Text, message, TimeSpan.FromSeconds(30));
-                lbEventsToDevice.Text += $"\r\nSent message with Id {message.MessageId} to {tbDeviceId.Text}.";
+                lbStatus.Text += $"\r\nSent message with Id {message.MessageId} to {tbDeviceId.Text}.";
                 message.Dispose();
             }
             catch (Exception e)
             {
-                lbEventsToDevice.Text += $"\r\nTransient Exception occurred, will retry: {e}";
+                lbStatus.Text += $"\r\nTransient Exception occurred, will retry: {e}";
             }
         }
 

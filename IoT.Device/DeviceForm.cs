@@ -30,12 +30,12 @@ namespace IoT.Device
 
             InitializeComponent();
 
-            lbStatusSend.Text += "\r\nCreating X509 authentication for IoT Hub...";
+            lbStatus.Text += "\r\nCreating X509 authentication for IoT Hub...";
             IAuthenticationMethod auth = new DeviceAuthenticationWithX509Certificate(
                 tbDeviceId.Text,
                 certificate);
 
-            lbStatusSend.Text += "\r\nTesting the provisioned device with IoT Hub...";
+            lbStatus.Text += "\r\nTesting the provisioned device with IoT Hub...";
 
             var clientCollection = new List<DeviceClient>();
             iotClient = DeviceClient.Create(tbAssignedHub.Text, auth, _parameters.TransportType);
@@ -44,9 +44,9 @@ namespace IoT.Device
 
         private async void btnRegister_Click(object sender, EventArgs e)
         {
-            lbStatusSend.Text += "\r\nLoading the certificate...";
+            lbStatus.Text += "\r\nLoading the certificate...";
             var security = new SecurityProviderX509Certificate(certificate);
-            lbStatusSend.Text += "\r\nInitializing the device provisioning client...";
+            lbStatus.Text += "\r\nInitializing the device provisioning client...";
             ProvisioningTransportHandler transport = new ProvisioningTransportHandlerAmqp();
             var provClient = ProvisioningDeviceClient.Create(
                 _parameters.GlobalDeviceEndpoint,
@@ -54,18 +54,18 @@ namespace IoT.Device
                 security,
                 transport);
 
-            lbStatusSend.Text += $"\r\nInitialized for registration Id {security.GetRegistrationID()}.";
+            lbStatus.Text += $"\r\nInitialized for registration Id {security.GetRegistrationID()}.";
 
-            lbStatusSend.Text += "\r\nRegistering with the device provisioning service... ";
+            lbStatus.Text += "\r\nRegistering with the device provisioning service... ";
             var result = await provClient.RegisterAsync();
             tbDeviceId.Text = result.DeviceId;
             tbAssignedHub.Text = result.AssignedHub;
 
-            lbStatusSend.Text += $"\r\nRegistration status: {result.Status}.";
+            lbStatus.Text += $"\r\nRegistration status: {result.Status}.";
             if (result.Status != ProvisioningRegistrationStatusType.Assigned)
                 throw new Exception("Registration status did not assign a hub, so exiting this sample.");
 
-            lbStatusSend.Text += $"\r\nDevice {tbDeviceId.Text} registered to {tbAssignedHub.Text}.";
+            lbStatus.Text += $"\r\nDevice {tbDeviceId.Text} registered to {tbAssignedHub.Text}.";
         }
 
         private X509Certificate2 LoadProvisioningPfxCertificate()
@@ -80,23 +80,29 @@ namespace IoT.Device
 
         private async void btnSendMsg_Click(object sender, EventArgs e)
         {
-            lbStatusSend.Text += "\r\nSending a telemetry message...";
+            lbStatus.Text += "\r\nSending a telemetry message...";
             var message = new Message(Encoding.UTF8.GetBytes(tbMsg.Text));
             await iotClient.SendEventAsync(message);
 
             await iotClient.CloseAsync();
-            lbStatusSend.Text += "\r\nFinished.";
+            lbStatus.Text += "\r\nFinished.";
         }
 
         private async void btnStartReceiving_Click(object sender, EventArgs e)
         {
-            lbStatusSend.Text += "\r\nReceiving cloud to device messages from service";
+            lbStatus.Text += "\r\nReceiving cloud to device messages from service";
 
-            var receivedMessage = await iotClient.ReceiveAsync();
+            IRetryPolicy retryPolicy = new ExponentialBackoff(int.MaxValue, TimeSpan.FromMilliseconds(100), TimeSpan.FromSeconds(10), TimeSpan.FromMilliseconds(100));
+            iotClient.SetRetryPolicy(retryPolicy);
 
-            lbStartReceiving.Text += $"\r\nReceived message: {Encoding.ASCII.GetString(receivedMessage.GetBytes())}";
+            await iotClient.SetReceiveMessageHandlerAsync(ReceiveAsync, lbStatus).ConfigureAwait(false);
+        }
 
-            await iotClient.CompleteAsync(receivedMessage);
+        private async Task ReceiveAsync(Message message, object lbStatus)
+        {
+            ((TextBox)lbStatus).Text += $"\r\nReceived message: {Encoding.ASCII.GetString(message.GetBytes())}";
+
+            await iotClient.CompleteAsync(message);
         }
 
         internal class DeviceParameters
@@ -166,6 +172,11 @@ namespace IoT.Device
                     await Task.Delay(TimeSpan.FromMilliseconds(500));
                 }
             }
+        }
+
+        private void Device_Load(object sender, EventArgs e)
+        {
+            CheckForIllegalCrossThreadCalls = false;
         }
     }
 }

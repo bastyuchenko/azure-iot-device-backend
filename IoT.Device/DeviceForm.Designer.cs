@@ -32,23 +32,22 @@
             this.tbMsg = new System.Windows.Forms.TextBox();
             this.btnSendMsg = new System.Windows.Forms.Button();
             this.btnRegister = new System.Windows.Forms.Button();
-            this.lbStatusSend = new System.Windows.Forms.TextBox();
+            this.lbStatus = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.lbStartReceiving = new System.Windows.Forms.TextBox();
             this.btnStartReceiving = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.btnRDesired = new System.Windows.Forms.Button();
             this.btnWReported = new System.Windows.Forms.Button();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.tbMsgsExample = new System.Windows.Forms.TextBox();
+            this.btnGenStream = new System.Windows.Forms.Button();
             this.tbDeviceId = new System.Windows.Forms.TextBox();
             this.tbAssignedHub = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.btnGenStream = new System.Windows.Forms.Button();
-            this.tbMsgsExample = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -83,13 +82,13 @@
             this.btnRegister.UseVisualStyleBackColor = true;
             this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
             // 
-            // lbStatusSend
+            // lbStatus
             // 
-            this.lbStatusSend.Location = new System.Drawing.Point(23, 65);
-            this.lbStatusSend.Multiline = true;
-            this.lbStatusSend.Name = "lbStatusSend";
-            this.lbStatusSend.Size = new System.Drawing.Size(767, 564);
-            this.lbStatusSend.TabIndex = 3;
+            this.lbStatus.Location = new System.Drawing.Point(16, 317);
+            this.lbStatus.Multiline = true;
+            this.lbStatus.Name = "lbStatus";
+            this.lbStatus.Size = new System.Drawing.Size(810, 412);
+            this.lbStatus.TabIndex = 3;
             // 
             // label1
             // 
@@ -109,7 +108,7 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 60);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(818, 669);
+            this.tabControl1.Size = new System.Drawing.Size(818, 255);
             this.tabControl1.TabIndex = 5;
             // 
             // tabPage1
@@ -117,34 +116,24 @@
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.btnSendMsg);
             this.tabPage1.Controls.Add(this.tbMsg);
-            this.tabPage1.Controls.Add(this.lbStatusSend);
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(810, 636);
+            this.tabPage1.Size = new System.Drawing.Size(810, 222);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Send to IoT Hub";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.lbStartReceiving);
             this.tabPage2.Controls.Add(this.btnStartReceiving);
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(810, 636);
+            this.tabPage2.Size = new System.Drawing.Size(810, 222);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Receive from IoT Hub";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // lbStartReceiving
-            // 
-            this.lbStartReceiving.Location = new System.Drawing.Point(6, 64);
-            this.lbStartReceiving.Multiline = true;
-            this.lbStartReceiving.Name = "lbStartReceiving";
-            this.lbStartReceiving.Size = new System.Drawing.Size(798, 564);
-            this.lbStartReceiving.TabIndex = 1;
             // 
             // btnStartReceiving
             // 
@@ -162,14 +151,14 @@
             this.tabPage3.Controls.Add(this.btnWReported);
             this.tabPage3.Location = new System.Drawing.Point(4, 29);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(810, 636);
+            this.tabPage3.Size = new System.Drawing.Size(810, 222);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "DeviceTwin";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // btnRDesired
             // 
-            this.btnRDesired.Location = new System.Drawing.Point(62, 56);
+            this.btnRDesired.Location = new System.Drawing.Point(62, 80);
             this.btnRDesired.Name = "btnRDesired";
             this.btnRDesired.Size = new System.Drawing.Size(202, 29);
             this.btnRDesired.TabIndex = 1;
@@ -186,6 +175,36 @@
             this.btnWReported.Text = "write Reported";
             this.btnWReported.UseVisualStyleBackColor = true;
             this.btnWReported.Click += new System.EventHandler(this.btnWReported_Click);
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.tbMsgsExample);
+            this.tabPage4.Controls.Add(this.btnGenStream);
+            this.tabPage4.Location = new System.Drawing.Point(4, 29);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(810, 222);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Generate stream";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // tbMsgsExample
+            // 
+            this.tbMsgsExample.Location = new System.Drawing.Point(182, 11);
+            this.tbMsgsExample.Multiline = true;
+            this.tbMsgsExample.Name = "tbMsgsExample";
+            this.tbMsgsExample.Size = new System.Drawing.Size(610, 208);
+            this.tbMsgsExample.TabIndex = 1;
+            this.tbMsgsExample.Text = resources.GetString("tbMsgsExample.Text");
+            // 
+            // btnGenStream
+            // 
+            this.btnGenStream.Location = new System.Drawing.Point(8, 10);
+            this.btnGenStream.Name = "btnGenStream";
+            this.btnGenStream.Size = new System.Drawing.Size(168, 29);
+            this.btnGenStream.TabIndex = 0;
+            this.btnGenStream.Text = "Generate stream";
+            this.btnGenStream.UseVisualStyleBackColor = true;
+            this.btnGenStream.Click += new System.EventHandler(this.btnGenStream_Click);
             // 
             // tbDeviceId
             // 
@@ -223,36 +242,6 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "Assigned Hub";
             // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.tbMsgsExample);
-            this.tabPage4.Controls.Add(this.btnGenStream);
-            this.tabPage4.Location = new System.Drawing.Point(4, 29);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(810, 636);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Generate stream";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // btnGenStream
-            // 
-            this.btnGenStream.Location = new System.Drawing.Point(8, 10);
-            this.btnGenStream.Name = "btnGenStream";
-            this.btnGenStream.Size = new System.Drawing.Size(168, 29);
-            this.btnGenStream.TabIndex = 0;
-            this.btnGenStream.Text = "Generate stream";
-            this.btnGenStream.UseVisualStyleBackColor = true;
-            this.btnGenStream.Click += new System.EventHandler(this.btnGenStream_Click);
-            // 
-            // tbMsgsExample
-            // 
-            this.tbMsgsExample.Location = new System.Drawing.Point(9, 50);
-            this.tbMsgsExample.Multiline = true;
-            this.tbMsgsExample.Name = "tbMsgsExample";
-            this.tbMsgsExample.Size = new System.Drawing.Size(785, 562);
-            this.tbMsgsExample.TabIndex = 1;
-            this.tbMsgsExample.Text = resources.GetString("tbMsgsExample.Text");
-            // 
             // Device
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -261,16 +250,17 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.lbStatus);
             this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.tbAssignedHub);
             this.Controls.Add(this.tbDeviceId);
             this.Name = "Device";
             this.Text = "Device";
+            this.Load += new System.EventHandler(this.Device_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
@@ -284,7 +274,7 @@
         private System.Windows.Forms.TextBox tbMsg;
         private System.Windows.Forms.Button btnSendMsg;
         private System.Windows.Forms.Button btnRegister;
-        private System.Windows.Forms.TextBox lbStatusSend;
+        private System.Windows.Forms.TextBox lbStatus;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
@@ -294,7 +284,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnStartReceiving;
-        private System.Windows.Forms.TextBox lbStartReceiving;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Button btnRDesired;
         private System.Windows.Forms.Button btnWReported;
