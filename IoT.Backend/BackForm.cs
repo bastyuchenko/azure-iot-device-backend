@@ -10,6 +10,10 @@ using Azure.Messaging.EventHubs.Consumer;
 using Microsoft.Azure.Devices;
 using Microsoft.Azure.Devices.Shared;
 using Message = Microsoft.Azure.Devices.Message;
+using Azure.Messaging.EventHubs.Processor;
+using Azure.Messaging.EventHubs;
+using Azure.Storage.Blobs;
+using System.Diagnostics.Tracing;
 
 namespace IoT.Backend
 {
@@ -20,6 +24,8 @@ namespace IoT.Backend
         private Parameters _parameters;
 
         private RegistryManager registryManager;
+
+        EventProcessorClient processor;
 
         public BackForm()
         {
@@ -41,73 +47,57 @@ namespace IoT.Backend
             // Either the connection string must be supplied, or the set of endpoint, name, and shared access key must be.
             if (string.IsNullOrWhiteSpace(_parameters.EventHubConnectionString)) MessageBox.Show("error");
 
-            lbStatus.Text += "\r\nIoT Hub Quickstarts - Read device to cloud messages. Ctrl-C to exit.\r\n";
+            Log("IoT Hub Quickstarts - Read device to cloud messages. Ctrl-C to exit.\r\n");
 
-            // Run the sample
-            await ReceiveMessagesFromDeviceAsync(CancellationToken.None);
-
-            lbStatus.Text += "\r\nCloud message reader finished.";
-        }
-
-        // Asynchronously create a PartitionReceiver for a partition and then start
-        // reading any messages sent from the simulated client.
-        private async Task ReceiveMessagesFromDeviceAsync(CancellationToken ct)
-        {
-            // Create the consumer using the default consumer group using a direct connection to the service.
-            // Information on using the client with a proxy can be found in the README for this quick start, here:
-            // https://github.com/Azure-Samples/azure-iot-samples-csharp/tree/main/iot-hub/Quickstarts/ReadD2cMessages/README.md#websocket-and-proxy-support
-            var consumer = new EventHubConsumerClient(
-                EventHubConsumerClient.DefaultConsumerGroupName,
+            var storageClient = new BlobContainerClient(_parameters.BlobStorageConnectionString, "event-hub-checkpoints");
+            processor = new EventProcessorClient(storageClient, EventHubConsumerClient.DefaultConsumerGroupName,
                 _parameters.EventHubConnectionString);
 
-            lbStatus.Text += "\r\nListening for messages on all partitions.";
+            processor.ProcessEventAsync += ProcessEventHandler;
+            processor.ProcessErrorAsync += ProcessErrorHandler;
 
+            await processor.StartProcessingAsync();
+        }
+
+        private async void btnStopReceiving_Click(object sender, EventArgs e)
+        {
             try
             {
-                // Begin reading events for all partitions, starting with the first event in each partition and waiting indefinitely for
-                // events to become available. Reading can be canceled by breaking out of the loop when an event is processed or by
-                // signaling the cancellation token.
-                //
-                // The "ReadEventsAsync" method on the consumer is a good starting point for consuming events for prototypes
-                // and samples. For real-world production scenarios, it is strongly recommended that you consider using the
-                // "EventProcessorClient" from the "Azure.Messaging.EventHubs.Processor" package.
-                //
-                // More information on the "EventProcessorClient" and its benefits can be found here:
-                //   https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/eventhub/Azure.Messaging.EventHubs.Processor/README.md
-                await foreach (var partitionEvent in consumer.ReadEventsAsync(ct))
-                {
-                    lbStatus.Text +=
-                        $"\r\nMessage received on partition {partitionEvent.Partition.PartitionId}:";
-
-                    var data = Encoding.UTF8.GetString(partitionEvent.Data.Body.ToArray());
-                    lbStatus.Text += $"\r\n\tMessage body: {data}";
-
-                    lbStatus.Text += "\r\n\tApplication properties (set by device):";
-                    foreach (KeyValuePair<string, object> prop in partitionEvent.Data.Properties) PrintProperties(prop);
-
-                    lbStatus.Text += "\r\n\tSystem properties (set by IoT Hub):";
-                    foreach (KeyValuePair<string, object> prop in partitionEvent.Data.SystemProperties)
-                        PrintProperties(prop);
-
-                    lbStatus.Text += "\r\n=====================================";
-                    lbStatus.Text += "\r\n=====================================";
-                    lbStatus.Text += "\r\n=====================================";
-                }
+                await processor.StopProcessingAsync();
             }
-            catch (TaskCanceledException)
+            finally
             {
-                // This is expected when the token is signaled; it should not be considered an
-                // error in this scenario.
+                // To prevent leaks, the handlers should be removed when processing is complete.
+                processor.ProcessEventAsync -= ProcessEventHandler;
+                processor.ProcessErrorAsync -= ProcessErrorHandler;
             }
         }
 
-        private void PrintProperties(KeyValuePair<string, object> prop)
+        private async Task ProcessEventHandler(ProcessEventArgs partitionEvent)
         {
-            var propValue = prop.Value is DateTime
-                ? ((DateTime)prop.Value).ToString("O") // using a built-in date format here that includes milliseconds
-                : prop.Value.ToString();
+            Log($"Message received on partition {partitionEvent.Partition.PartitionId}:");
 
-            lbStatus.Text += $"\r\n\t\t{prop.Key}: {propValue}";
+            var data = Encoding.UTF8.GetString(partitionEvent.Data.Body.ToArray());
+            Log($"\tMessage body: {data}");
+
+            Log("\tApplication properties (set by device):");
+            foreach (KeyValuePair<string, object> prop in partitionEvent.Data.Properties) Log($"\t\t{prop.Key}: {prop.Value}");
+
+            Log("\tSystem properties (set by IoT Hub):");
+            foreach (KeyValuePair<string, object> prop in partitionEvent.Data.SystemProperties) Log($"\t\t{prop.Key}: {prop.Value}");
+
+            Log("=====================================");
+            Log("=====================================");
+            Log("=====================================");
+
+            // Update checkpoint in the blob storage so that the app receives only new events the next time it's run
+            await partitionEvent.UpdateCheckpointAsync(partitionEvent.CancellationToken);
+        }
+
+        private Task ProcessErrorHandler(ProcessErrorEventArgs arg)
+        {
+            Log($"ERROR: {arg.Exception.Message}");
+            return Task.CompletedTask;
         }
 
         private async void btnSendToDevice_Click(object sender, EventArgs e)
@@ -121,32 +111,30 @@ namespace IoT.Backend
         private async Task ReceiveMessageFeedbacksAsync(CancellationToken token)
         {
             // It is important to note that receiver only gets feedback messages when the device is actively running and acting on messages.
-            lbStatus.Text += "\r\nStarting to listen to feedback messages";
+            Log("Starting to listen to feedback messages");
 
             var feedbackReceiver = _serviceClient.GetFeedbackReceiver();
 
             while (!token.IsCancellationRequested)
                 try
                 {
-                    var feedbackMessages = await feedbackReceiver.ReceiveAsync();
+                    var feedbackMessages = await feedbackReceiver.ReceiveAsync(token);
                     if (feedbackMessages != null)
                     {
-                        lbStatus.Text += "\r\nNew Feedback received:";
-                        lbStatus.Text += $"\r\n\tEnqueue Time: {feedbackMessages.EnqueuedTime}";
-                        lbStatus.Text +=
-                            $"\r\n\tNumber of messages in the batch: {feedbackMessages.Records.Count()}";
+                        Log("New Feedback received:");
+                        Log($"\tEnqueue Time: {feedbackMessages.EnqueuedTime}");
+                        Log($"\tNumber of messages in the batch: {feedbackMessages.Records.Count()}");
                         foreach (var feedbackRecord in feedbackMessages.Records)
-                            lbStatus.Text +=
-                                $"\r\n\tDevice {feedbackRecord.DeviceId} acted on message: {feedbackRecord.OriginalMessageId} with status: {feedbackRecord.StatusCode}";
+                            Log($"\tDevice {feedbackRecord.DeviceId} acted on message: {feedbackRecord.OriginalMessageId} with status: {feedbackRecord.StatusCode}");
 
-                        await feedbackReceiver.CompleteAsync(feedbackMessages);
+                        await feedbackReceiver.CompleteAsync(feedbackMessages, token);
                     }
 
                     await Task.Delay(TimeSpan.FromSeconds(5));
                 }
                 catch (Exception e)
                 {
-                    lbStatus.Text += $"\r\nTransient Exception occurred; will retry: {e}";
+                    Log($"Transient Exception occurred; will retry: {e}");
                 }
         }
 
@@ -157,18 +145,19 @@ namespace IoT.Backend
                 // An acknowledgment is sent on delivery success or failure.
                 Ack = DeliveryAcknowledgement.Full
             };
+            message.Properties.Add("custom-prop-device-id", tbDeviceId.Text);
 
-            lbStatus.Text += $"\r\nSending C2D message with Id {message.MessageId} to {tbDeviceId.Text}.";
+            Log($"Sending C2D message with Id {message.MessageId} to {tbDeviceId.Text}.");
 
             try
             {
                 await _serviceClient.SendAsync(tbDeviceId.Text, message, TimeSpan.FromSeconds(30));
-                lbStatus.Text += $"\r\nSent message with Id {message.MessageId} to {tbDeviceId.Text}.";
+                Log($"Sent message with Id {message.MessageId} to {tbDeviceId.Text}.");
                 message.Dispose();
             }
             catch (Exception e)
             {
-                lbStatus.Text += $"\r\nTransient Exception occurred, will retry: {e}";
+                Log($"Transient Exception occurred, will retry: {e}");
             }
         }
 
@@ -178,6 +167,7 @@ namespace IoT.Backend
 
             public string EventHubConnectionString = ConfigurationSettings.AppSettings["EventHubConnectionString"];
             public string IoTHubConnectionString = ConfigurationSettings.AppSettings["IoTHubConnectionString"];
+            public string BlobStorageConnectionString = ConfigurationSettings.AppSettings["BlobStorageConnectionString"];
 
             public TransportType TransportType = TransportType.Amqp;
         }
@@ -190,7 +180,7 @@ namespace IoT.Backend
                 @"{
                     properties: {
                         desired: {
-                          customKey: 'customValue'
+                          myCustomKey: 'temperature 10 C degree'
                         }
                     }
                 }";
@@ -202,6 +192,21 @@ namespace IoT.Backend
         {
             var twin = await registryManager.GetTwinAsync(_parameters.DeviceId);
             MessageBox.Show(twin.ToJson());
+        }
+
+        private void Log(string text)
+        {
+            lbStatus.Text += "\r\n" + text;
+        }
+
+        private void BackForm_Load(object sender, EventArgs e)
+        {
+            CheckForIllegalCrossThreadCalls = false;
+        }
+
+        private void btnClean_Click(object sender, EventArgs e)
+        {
+            lbStatus.Text = "";
         }
     }
 }
