@@ -14,6 +14,7 @@ using Azure.Messaging.EventHubs.Processor;
 using Azure.Messaging.EventHubs;
 using Azure.Storage.Blobs;
 using System.Diagnostics.Tracing;
+using Newtonsoft.Json;
 
 namespace IoT.Backend
 {
@@ -77,18 +78,14 @@ namespace IoT.Backend
         {
             Log($"Message received on partition {partitionEvent.Partition.PartitionId}:");
 
-            var data = Encoding.UTF8.GetString(partitionEvent.Data.Body.ToArray());
-            Log($"\tMessage body: {data}");
-
-            Log("\tApplication properties (set by device):");
-            foreach (KeyValuePair<string, object> prop in partitionEvent.Data.Properties) Log($"\t\t{prop.Key}: {prop.Value}");
-
-            Log("\tSystem properties (set by IoT Hub):");
-            foreach (KeyValuePair<string, object> prop in partitionEvent.Data.SystemProperties) Log($"\t\t{prop.Key}: {prop.Value}");
-
-            Log("=====================================");
-            Log("=====================================");
-            Log("=====================================");
+            var EventBody = Encoding.UTF8.GetString(partitionEvent.Data.EventBody.ToArray());
+            tbReceivedMsg.Text += JsonConvert.SerializeObject(
+                new
+                {
+                    EventBody,
+                    partitionEvent.Data.Properties,
+                    partitionEvent.Data.SystemProperties,
+                }, Formatting.Indented);
 
             // Update checkpoint in the blob storage so that the app receives only new events the next time it's run
             await partitionEvent.UpdateCheckpointAsync(partitionEvent.CancellationToken);
@@ -122,10 +119,12 @@ namespace IoT.Backend
                     if (feedbackMessages != null)
                     {
                         Log("New Feedback received:");
-                        Log($"\tEnqueue Time: {feedbackMessages.EnqueuedTime}");
-                        Log($"\tNumber of messages in the batch: {feedbackMessages.Records.Count()}");
-                        foreach (var feedbackRecord in feedbackMessages.Records)
-                            Log($"\tDevice {feedbackRecord.DeviceId} acted on message: {feedbackRecord.OriginalMessageId} with status: {feedbackRecord.StatusCode}");
+                        Log(JsonConvert.SerializeObject(
+                            new
+                            {
+                                feedbackMessages.EnqueuedTime,
+                                feedbackMessages.Records
+                            }, Formatting.Indented));
 
                         await feedbackReceiver.CompleteAsync(feedbackMessages, token);
                     }
@@ -140,7 +139,7 @@ namespace IoT.Backend
 
         private async Task SendC2dMessagesAsync(CancellationToken cancellationToken)
         {
-            var message = new Message(Encoding.ASCII.GetBytes(tbMsg.Text))
+            var message = new Message(Encoding.ASCII.GetBytes(tbSentMsg.Text))
             {
                 // An acknowledgment is sent on delivery success or failure.
                 Ack = DeliveryAcknowledgement.Full
@@ -177,13 +176,13 @@ namespace IoT.Backend
             var twin = await registryManager.GetTwinAsync(_parameters.DeviceId);
 
             var patch =
-                @"{
-                    properties: {
-                        desired: {
-                          myCustomKey: 'temperature 10 C degree'
-                        }
-                    }
-                }";
+                $@"{{
+                    properties: {{
+                        desired: {{
+                          myCustomKey: '{tbDTdesired.Text}'
+                        }}
+                    }}
+                }}";
 
             await registryManager.UpdateTwinAsync(twin.DeviceId, patch, twin.ETag);
         }
@@ -191,7 +190,7 @@ namespace IoT.Backend
         private async void btnRReported_Click(object sender, EventArgs e)
         {
             var twin = await registryManager.GetTwinAsync(_parameters.DeviceId);
-            MessageBox.Show(twin.ToJson());
+            tbDTRead.Text = twin.ToJson(Formatting.Indented);
         }
 
         private void Log(string text)

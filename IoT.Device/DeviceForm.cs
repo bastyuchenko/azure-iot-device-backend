@@ -32,6 +32,8 @@ namespace IoT.Device
             _parameters = new DeviceParameters();
             x509Certificate = Helper.LoadProvisioningPfxCertificate(_parameters.CertificatePfxName, _parameters.CertificatePassword);
             Log("PFX Certificate was loaded...");
+
+            btnRegister_Click(null, null);
         }
 
         private async void btnRegister_Click(object sender, EventArgs e)
@@ -89,9 +91,14 @@ namespace IoT.Device
             await iotClient.SetReceiveMessageHandlerAsync(
                 async (Message message, object lbStatus) =>
                 {
-                    ((TextBox)lbStatus).Text += $"\r\nReceived message:";
-                    ((TextBox)lbStatus).Text += $"\r\n\t Body: {Encoding.UTF8.GetString(message.GetBytes())}";
-                    ((TextBox)lbStatus).Text += "\r\n\t Properties: {" + string.Join(",", message.Properties.Select(kv => kv.Key + "=" + kv.Value).ToArray()) + "}";
+                    ((TextBox)tbReceivedMsg).Text += JsonConvert.SerializeObject(
+                        new
+                        {
+                            Body = Encoding.UTF8.GetString(message.GetBytes()),
+                            message.Properties,
+                            message.MessageId,
+                            message.To
+                        }, Formatting.Indented);
 
                     await iotClient.CompleteAsync(message);
                 },
@@ -102,9 +109,14 @@ namespace IoT.Device
         {
             TwinCollection reportedProperties, connectivity;
             reportedProperties = new TwinCollection();
+
             connectivity = new TwinCollection();
             connectivity["type"] = "cellular";
             reportedProperties["connectivity"] = connectivity;
+
+
+            reportedProperties["body"] = tbDTReport.Text;
+
             await iotClient.UpdateReportedPropertiesAsync(reportedProperties);
         }
 
@@ -113,7 +125,7 @@ namespace IoT.Device
             await iotClient.SetDesiredPropertyUpdateCallbackAsync(
                 async (TwinCollection desiredProperties, object userContext) =>
             {
-                MessageBox.Show(JsonConvert.SerializeObject(desiredProperties));
+                tbDTRead.Text = JsonConvert.SerializeObject(desiredProperties);
             },
             null);
         }
@@ -145,6 +157,12 @@ namespace IoT.Device
         private void Device_Load(object sender, EventArgs e)
         {
             CheckForIllegalCrossThreadCalls = false;
+        }
+
+        private async void btnReadDT_Click(object sender, EventArgs e)
+        {
+            var twin = await iotClient.GetTwinAsync();
+            tbDTRead.Text = twin.ToJson(Formatting.Indented);
         }
     }
 }
