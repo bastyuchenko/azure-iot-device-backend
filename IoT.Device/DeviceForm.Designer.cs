@@ -45,6 +45,7 @@
             this.btnWReported = new System.Windows.Forms.Button();
             this.tbDTReport = new System.Windows.Forms.TextBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.btnGenerateStreamStop = new System.Windows.Forms.Button();
             this.tbMsgsExample = new System.Windows.Forms.TextBox();
             this.btnGenStream = new System.Windows.Forms.Button();
             this.tbDeviceId = new System.Windows.Forms.TextBox();
@@ -203,6 +204,7 @@
             // tabPage4
             // 
             this.tabPage4.BackColor = System.Drawing.Color.Gray;
+            this.tabPage4.Controls.Add(this.btnGenerateStreamStop);
             this.tabPage4.Controls.Add(this.tbMsgsExample);
             this.tabPage4.Controls.Add(this.btnGenStream);
             this.tabPage4.Location = new System.Drawing.Point(4, 29);
@@ -211,22 +213,33 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Generate stream";
             // 
+            // btnGenerateStreamStop
+            // 
+            this.btnGenerateStreamStop.Location = new System.Drawing.Point(278, 11);
+            this.btnGenerateStreamStop.Name = "btnGenerateStreamStop";
+            this.btnGenerateStreamStop.Size = new System.Drawing.Size(168, 57);
+            this.btnGenerateStreamStop.TabIndex = 2;
+            this.btnGenerateStreamStop.Text = "Generate stream - Stop";
+            this.btnGenerateStreamStop.UseVisualStyleBackColor = true;
+            this.btnGenerateStreamStop.Click += new System.EventHandler(this.btnGenerateStreamStop_Click);
+            // 
             // tbMsgsExample
             // 
-            this.tbMsgsExample.Location = new System.Drawing.Point(8, 58);
+            this.tbMsgsExample.Location = new System.Drawing.Point(8, 74);
             this.tbMsgsExample.Multiline = true;
             this.tbMsgsExample.Name = "tbMsgsExample";
-            this.tbMsgsExample.Size = new System.Drawing.Size(438, 551);
+            this.tbMsgsExample.ReadOnly = true;
+            this.tbMsgsExample.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.tbMsgsExample.Size = new System.Drawing.Size(438, 535);
             this.tbMsgsExample.TabIndex = 1;
-            this.tbMsgsExample.Text = resources.GetString("tbMsgsExample.Text");
             // 
             // btnGenStream
             // 
             this.btnGenStream.Location = new System.Drawing.Point(8, 11);
             this.btnGenStream.Name = "btnGenStream";
-            this.btnGenStream.Size = new System.Drawing.Size(168, 29);
+            this.btnGenStream.Size = new System.Drawing.Size(168, 57);
             this.btnGenStream.TabIndex = 0;
-            this.btnGenStream.Text = "Generate stream";
+            this.btnGenStream.Text = "Generate stream - Start";
             this.btnGenStream.UseVisualStyleBackColor = true;
             this.btnGenStream.Click += new System.EventHandler(this.btnGenStream_Click);
             // 
@@ -322,5 +335,6 @@
         private System.Windows.Forms.TextBox tbDTRead;
         private System.Windows.Forms.TextBox tbDTReport;
         private System.Windows.Forms.Button btnReadDT;
+        private System.Windows.Forms.Button btnGenerateStreamStop;
     }
 }

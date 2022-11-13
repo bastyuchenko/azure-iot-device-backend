@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Azure.Devices.Client;
@@ -24,10 +25,13 @@ namespace IoT.Device
         private readonly DeviceParameters _parameters;
         private readonly X509Certificate2 x509Certificate;
         private DeviceClient iotClient;
+        private CancellationTokenSource streamGenerationToken;
 
         public Device()
         {
             InitializeComponent();
+
+            streamGenerationToken = new CancellationTokenSource();
 
             _parameters = new DeviceParameters();
             x509Certificate = Helper.LoadProvisioningPfxCertificate(_parameters.CertificatePfxName, _parameters.CertificatePassword);
@@ -91,14 +95,14 @@ namespace IoT.Device
             await iotClient.SetReceiveMessageHandlerAsync(
                 async (Message message, object lbStatus) =>
                 {
-                    ((TextBox)tbReceivedMsg).Text += JsonConvert.SerializeObject(
+                    ((TextBox)tbReceivedMsg).AppendText(JsonConvert.SerializeObject(
                         new
                         {
                             Body = Encoding.UTF8.GetString(message.GetBytes()),
                             message.Properties,
                             message.MessageId,
                             message.To
-                        }, Formatting.Indented);
+                        }, Formatting.Indented));
 
                     await iotClient.CompleteAsync(message);
                 },
@@ -132,21 +136,62 @@ namespace IoT.Device
 
         private async void btnGenStream_Click(object sender, EventArgs e)
         {
-            JArray array = JArray.Parse(tbMsgsExample.Text);
-            while (true)
+            streamGenerationToken = new CancellationTokenSource();
+
+            // Initial telemetry values.
+            double minTemperature = 20;
+            double minHumidity = 60;
+            var rand = new Random();
+
+            try
             {
-                foreach (JToken token in array)
+                while (!streamGenerationToken.Token.IsCancellationRequested)
                 {
-                    var message = new Message(Encoding.UTF8.GetBytes(token.ToString()));
-                    await iotClient.SendEventAsync(message);
-                    await Task.Delay(TimeSpan.FromMilliseconds(500));
+                    double currentTemperature = minTemperature + rand.NextDouble() * 15;
+                    double currentHumidity = minHumidity + rand.NextDouble() * 20;
+
+                    // Create JSON message.
+                    string messageBody = JsonConvert.SerializeObject(
+                        new
+                        {
+                            temperature = currentTemperature,
+                            humidity = currentHumidity,
+                        }, Formatting.Indented);
+
+                    using var message = new Message(Encoding.ASCII.GetBytes(messageBody))
+                    {
+                        ContentType = "application/json",
+                        ContentEncoding = "utf-8",
+                    };
+
+                    // Add a custom application property to the message.
+                    // An IoT hub can filter on these properties without access to the message body.
+                    message.Properties.Add("temperatureAlert", (currentTemperature > 30) ? "true" : "false");
+
+                    // Send the telemetry message.
+                    await iotClient.SendEventAsync(message, streamGenerationToken.Token);
+                    tbMsgsExample.AppendText(JsonConvert.SerializeObject(new
+                    {
+                        Body = messageBody,
+                        message.ContentType,
+                        message.ContentEncoding,
+                        message.Properties
+                    }, Formatting.Indented) + "\r\n");
+
+                    await Task.Delay(TimeSpan.FromMilliseconds(500), streamGenerationToken.Token);
                 }
             }
+            catch (TaskCanceledException) { } // User canceled
+        }
+
+        private void btnGenerateStreamStop_Click(object sender, EventArgs e)
+        {
+            streamGenerationToken.Cancel();
         }
 
         private void Log(string text)
         {
-            lbStatus.Text += "\r\n" + text;
+            lbStatus.AppendText("\r\n" + text);
         }
 
         private void btnClean_Click(object sender, EventArgs e)

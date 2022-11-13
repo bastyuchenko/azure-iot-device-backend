@@ -79,13 +79,13 @@ namespace IoT.Backend
             Log($"Message received on partition {partitionEvent.Partition.PartitionId}:");
 
             var EventBody = Encoding.UTF8.GetString(partitionEvent.Data.EventBody.ToArray());
-            tbReceivedMsg.Text += JsonConvert.SerializeObject(
+            tbReceivedMsg.AppendText(JsonConvert.SerializeObject(
                 new
                 {
                     EventBody,
                     partitionEvent.Data.Properties,
                     partitionEvent.Data.SystemProperties,
-                }, Formatting.Indented);
+                }, Formatting.Indented));
 
             // Update checkpoint in the blob storage so that the app receives only new events the next time it's run
             await partitionEvent.UpdateCheckpointAsync(partitionEvent.CancellationToken);
@@ -195,7 +195,7 @@ namespace IoT.Backend
 
         private void Log(string text)
         {
-            lbStatus.Text += "\r\n" + text;
+            lbStatus.AppendText("\r\n" + text);
         }
 
         private void BackForm_Load(object sender, EventArgs e)

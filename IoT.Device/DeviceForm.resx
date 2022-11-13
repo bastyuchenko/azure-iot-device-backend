@@ -57,48 +57,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="tbMsgsExample.Text" xml:space="preserve">
-    <value>
-	[
-	{
-		"time": "2018-10-24T20:47:53.0000000",
-		"iothub-connection-device-id": "F49837FA-2C4E-48A1-90FA-EC55BDF41572",
-		"temp": 123,
-		"hmdt": 34
-	},
-	{
-		"time": "2018-10-24T20:47:54.0000000",
-		"iothub-connection-device-id": "45F938D7-6455-424D-AF5B-F3D0517BE16D",
-		"temp": 77,
-		"hmdt": 49
-	},
-	{
-		"time": "2018-10-24T20:47:55.0000000",
-		"iothub-connection-device-id": "33209284-2741-4D61-BAB2-A8F413C042CE",
-		"temp": 128,
-		"hmdt": 64
-	},
-	{
-		"time": "2018-10-24T20:47:56.0000000",
-		"iothub-connection-device-id": "F49837FA-2C4E-48A1-90FA-EC55BDF41572",
-		"temp": 73,
-		"hmdt": 45
-	},
-	{
-		"time": "2018-10-24T20:47:57.0000000",
-		"iothub-connection-device-id": "33209284-2741-4D61-BAB2-A8F413C042CE",
-		"temp": 134,
-		"hmdt": 68
-	},
-	{
-		"time": "2018-10-24T20:47:58.0000000",
-		"iothub-connection-device-id": "F49837FA-2C4E-48A1-90FA-EC55BDF41572",
-		"temp": 140,
-		"hmdt": 62
-	}
-]
-	</value>
-  </data>
   <metadata name="notifyIconDevice.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
