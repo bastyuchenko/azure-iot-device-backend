@@ -141,6 +141,8 @@ namespace IoT.Backend
         {
             var message = new Message(Encoding.ASCII.GetBytes(tbSentMsg.Text))
             {
+                MessageId = tbMessageId.Text,
+                CorrelationId = tbCorrelationId.Text,
                 // An acknowledgment is sent on delivery success or failure.
                 Ack = DeliveryAcknowledgement.Full
             };
@@ -201,6 +203,8 @@ namespace IoT.Backend
         private void BackForm_Load(object sender, EventArgs e)
         {
             CheckForIllegalCrossThreadCalls = false;
+            tbMessageId.Text = Guid.NewGuid().ToString("D");
+            tbCorrelationId.Text = Guid.NewGuid().ToString("D");
         }
 
         private void btnClean_Click(object sender, EventArgs e)

@@ -30,6 +30,8 @@
         {
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tbMessageId = new System.Windows.Forms.TextBox();
             this.tbReceivedMsg = new System.Windows.Forms.TextBox();
             this.btnStopReceiving = new System.Windows.Forms.Button();
             this.btnSendToDevice = new System.Windows.Forms.Button();
@@ -44,6 +46,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tbDeviceId = new System.Windows.Forms.TextBox();
             this.btnClean = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.tbCorrelationId = new System.Windows.Forms.TextBox();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -61,7 +65,11 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.BackColor = System.Drawing.Color.Gray;
+            this.tabPage1.BackColor = System.Drawing.Color.SteelBlue;
+            this.tabPage1.Controls.Add(this.label3);
+            this.tabPage1.Controls.Add(this.tbCorrelationId);
+            this.tabPage1.Controls.Add(this.label2);
+            this.tabPage1.Controls.Add(this.tbMessageId);
             this.tabPage1.Controls.Add(this.tbReceivedMsg);
             this.tabPage1.Controls.Add(this.btnStopReceiving);
             this.tabPage1.Controls.Add(this.btnSendToDevice);
@@ -74,9 +82,25 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Receive from/Send to device";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(8, 14);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(80, 20);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "MessageId";
+            // 
+            // tbMessageId
+            // 
+            this.tbMessageId.Location = new System.Drawing.Point(109, 9);
+            this.tbMessageId.Name = "tbMessageId";
+            this.tbMessageId.Size = new System.Drawing.Size(380, 27);
+            this.tbMessageId.TabIndex = 5;
+            // 
             // tbReceivedMsg
             // 
-            this.tbReceivedMsg.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.tbReceivedMsg.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.tbReceivedMsg.Location = new System.Drawing.Point(3, 298);
             this.tbReceivedMsg.Multiline = true;
             this.tbReceivedMsg.Name = "tbReceivedMsg";
@@ -107,10 +131,10 @@
             // 
             // tbSentMsg
             // 
-            this.tbSentMsg.Location = new System.Drawing.Point(3, 1);
+            this.tbSentMsg.Location = new System.Drawing.Point(3, 75);
             this.tbSentMsg.Multiline = true;
             this.tbSentMsg.Name = "tbSentMsg";
-            this.tbSentMsg.Size = new System.Drawing.Size(486, 291);
+            this.tbSentMsg.Size = new System.Drawing.Size(486, 217);
             this.tbSentMsg.TabIndex = 1;
             // 
             // btnStartReceiving
@@ -125,6 +149,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.BackColor = System.Drawing.Color.SteelBlue;
             this.tabPage3.Controls.Add(this.tbDTRead);
             this.tabPage3.Controls.Add(this.btnReadDT);
             this.tabPage3.Controls.Add(this.tbDTdesired);
@@ -134,11 +159,10 @@
             this.tabPage3.Size = new System.Drawing.Size(589, 657);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "DeviceTwin";
-            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // tbDTRead
             // 
-            this.tbDTRead.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.tbDTRead.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.tbDTRead.Location = new System.Drawing.Point(3, 304);
             this.tbDTRead.Multiline = true;
             this.tbDTRead.Name = "tbDTRead";
@@ -176,7 +200,7 @@
             // 
             // lbStatus
             // 
-            this.lbStatus.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.lbStatus.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.lbStatus.Location = new System.Drawing.Point(9, 45);
             this.lbStatus.Multiline = true;
             this.lbStatus.Name = "lbStatus";
@@ -213,11 +237,27 @@
             this.btnClean.UseVisualStyleBackColor = true;
             this.btnClean.Click += new System.EventHandler(this.btnClean_Click);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(8, 43);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(96, 20);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "CorrelationId";
+            // 
+            // tbCorrelationId
+            // 
+            this.tbCorrelationId.Location = new System.Drawing.Point(109, 38);
+            this.tbCorrelationId.Name = "tbCorrelationId";
+            this.tbCorrelationId.Size = new System.Drawing.Size(380, 27);
+            this.tbCorrelationId.TabIndex = 7;
+            // 
             // BackForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1013, 743);
             this.Controls.Add(this.btnClean);
             this.Controls.Add(this.label1);
@@ -255,5 +295,9 @@
         private System.Windows.Forms.TextBox tbReceivedMsg;
         private System.Windows.Forms.TextBox tbDTRead;
         private System.Windows.Forms.TextBox tbDTdesired;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox tbMessageId;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox tbCorrelationId;
     }
 }

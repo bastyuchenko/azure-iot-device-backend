@@ -36,8 +36,6 @@ namespace IoT.Device
             _parameters = new DeviceParameters();
             x509Certificate = Helper.LoadProvisioningPfxCertificate(_parameters.CertificatePfxName, _parameters.CertificatePassword);
             Log("PFX Certificate was loaded...");
-
-            btnRegister_Click(null, null);
         }
 
         private async void btnRegister_Click(object sender, EventArgs e)
@@ -101,7 +99,8 @@ namespace IoT.Device
                             Body = Encoding.UTF8.GetString(message.GetBytes()),
                             message.Properties,
                             message.MessageId,
-                            message.To
+                            message.To,
+                            message.CorrelationId
                         }, Formatting.Indented));
 
                     await iotClient.CompleteAsync(message);
@@ -202,10 +201,11 @@ namespace IoT.Device
         private void Device_Load(object sender, EventArgs e)
         {
             CheckForIllegalCrossThreadCalls = false;
+            btnRegister_Click(sender, e);
         }
 
         private async void btnReadDT_Click(object sender, EventArgs e)
-        {
+        { 
             var twin = await iotClient.GetTwinAsync();
             tbDTRead.Text = twin.ToJson(Formatting.Indented);
         }

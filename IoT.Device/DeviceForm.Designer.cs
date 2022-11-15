@@ -53,6 +53,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.notifyIconDevice = new System.Windows.Forms.NotifyIcon(this.components);
+            this.panelLoading = new System.Windows.Forms.Panel();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -283,6 +284,13 @@
             this.notifyIconDevice.Text = "NotifyIconDevice";
             this.notifyIconDevice.Visible = true;
             // 
+            // panelLoading
+            // 
+            this.panelLoading.Location = new System.Drawing.Point(409, 57);
+            this.panelLoading.Name = "panelLoading";
+            this.panelLoading.Size = new System.Drawing.Size(486, 672);
+            this.panelLoading.TabIndex = 6;
+            // 
             // Device
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -296,6 +304,7 @@
             this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.tbAssignedHub);
             this.Controls.Add(this.tbDeviceId);
+            this.Controls.Add(this.panelLoading);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Device";
             this.Text = "Device";
@@ -336,5 +345,6 @@
         private System.Windows.Forms.TextBox tbDTReport;
         private System.Windows.Forms.Button btnReadDT;
         private System.Windows.Forms.Button btnGenerateStreamStop;
+        private System.Windows.Forms.Panel panelLoading;
     }
 }
