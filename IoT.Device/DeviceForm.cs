@@ -2,10 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
+using System.Security.Cryptography.Xml;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -24,8 +26,9 @@ namespace IoT.Device
     {
         private readonly DeviceParameters _parameters;
         private readonly X509Certificate2 x509Certificate;
-        private DeviceClient iotClient;
+        private DeviceClient deviceClient;
         private CancellationTokenSource streamGenerationToken;
+        private static ModuleClient moduleClient;
 
         public Device()
         {
@@ -35,19 +38,18 @@ namespace IoT.Device
 
             _parameters = new DeviceParameters();
             x509Certificate = Helper.LoadProvisioningPfxCertificate(_parameters.CertificatePfxName, _parameters.CertificatePassword);
-            Log("PFX Certificate was loaded...");
+            Log($"[DONE] PFX Certificate was loaded...");
         }
 
         private async void btnRegister_Click(object sender, EventArgs e)
         {
             var security = new SecurityProviderX509Certificate(x509Certificate);
             Log("Initializing the device provisioning client...");
-            ProvisioningTransportHandler transport = new ProvisioningTransportHandlerAmqp();
             var provClient = ProvisioningDeviceClient.Create(
                 _parameters.GlobalDeviceEndpoint,
                 _parameters.IdScope,
                 security,
-                transport);
+                new ProvisioningTransportHandlerAmqp());
 
             Log($"Initialized for registration Id {security.GetRegistrationID()}.");
 
@@ -60,37 +62,49 @@ namespace IoT.Device
             if (result.Status != ProvisioningRegistrationStatusType.Assigned)
                 throw new Exception("Registration status did not assign a hub, so exiting this sample.");
 
-            Log($"Device {tbDeviceId.Text} registered to {result.AssignedHub}.");
+            Log($"[DONE] Device {tbDeviceId.Text} registered to {result.AssignedHub}.");
+        }
 
+        private void btnCreateClient_Click(object sender, EventArgs e)
+        {
             Log("Creating X509 authentication for IoT Hub...");
             IAuthenticationMethod auth = new DeviceAuthenticationWithX509Certificate(
                 tbDeviceId.Text,
                 x509Certificate);
 
-            iotClient = DeviceClient.Create(result.AssignedHub, auth, _parameters.TransportType);
-            Log("Created DeviceClient instance to communicate through assigned IoT Hub...");
+            deviceClient = DeviceClient.Create(tbAssignedHub.Text, auth, _parameters.TransportType);
+            Log($"[DONE] Created DeviceClient instance to communicate through assigned IoT Hub...");
+
+
+
+            moduleClient = ModuleClient.CreateFromConnectionString(_parameters.ModuleConnectionString, _parameters.TransportType);
+            moduleClient.SetConnectionStatusChangesHandler(
+                (ConnectionStatus status, ConnectionStatusChangeReason reason) =>
+                {
+                    MessageBox.Show($"Status {status} changed: {reason}");
+                });
         }
 
         private async void btnSendMsg_Click(object sender, EventArgs e)
         {
-            if (iotClient == null) { Log("Assigned IoT Hub name was not stored. Please register one more time to get IoT Hub name."); return; }
+            if (deviceClient == null) { Log("Assigned IoT Hub name was not stored. Please register one more time to get IoT Hub name."); return; }
 
             Log("Sending a telemetry message...");
             var message = new Message(Encoding.UTF8.GetBytes(tbMsg.Text));
-            await iotClient.SendEventAsync(message);
+            await deviceClient.SendEventAsync(message);
             Log("Finished.");
         }
 
         private async void btnStartReceiving_Click(object sender, EventArgs e)
         {
-            if (iotClient == null) { Log("Assigned IoT Hub name was not stored. Please register one more time to get IoT Hub name."); return; }
+            if (deviceClient == null) { Log("Assigned IoT Hub name was not stored. Please register one more time to get IoT Hub name."); return; }
 
             Log("Receiving cloud to device messages from service");
 
             IRetryPolicy retryPolicy = new ExponentialBackoff(int.MaxValue, TimeSpan.FromMilliseconds(100), TimeSpan.FromSeconds(10), TimeSpan.FromMilliseconds(100));
-            iotClient.SetRetryPolicy(retryPolicy);
+            deviceClient.SetRetryPolicy(retryPolicy);
 
-            await iotClient.SetReceiveMessageHandlerAsync(
+            await deviceClient.SetReceiveMessageHandlerAsync(
                 async (Message message, object lbStatus) =>
                 {
                     ((TextBox)tbReceivedMsg).AppendText(JsonConvert.SerializeObject(
@@ -103,7 +117,7 @@ namespace IoT.Device
                             message.CorrelationId
                         }, Formatting.Indented));
 
-                    await iotClient.CompleteAsync(message);
+                    await deviceClient.CompleteAsync(message);
                 },
                 lbStatus).ConfigureAwait(false);
         }
@@ -120,12 +134,12 @@ namespace IoT.Device
 
             reportedProperties["body"] = tbDTReport.Text;
 
-            await iotClient.UpdateReportedPropertiesAsync(reportedProperties);
+            await deviceClient.UpdateReportedPropertiesAsync(reportedProperties);
         }
 
         private async void btnRDesired_Click(object sender, EventArgs e)
         {
-            await iotClient.SetDesiredPropertyUpdateCallbackAsync(
+            await deviceClient.SetDesiredPropertyUpdateCallbackAsync(
                 async (TwinCollection desiredProperties, object userContext) =>
             {
                 tbDTRead.Text = JsonConvert.SerializeObject(desiredProperties);
@@ -168,7 +182,7 @@ namespace IoT.Device
                     message.Properties.Add("temperatureAlert", (currentTemperature > 30) ? "true" : "false");
 
                     // Send the telemetry message.
-                    await iotClient.SendEventAsync(message, streamGenerationToken.Token);
+                    await deviceClient.SendEventAsync(message, streamGenerationToken.Token);
                     tbMsgsExample.AppendText(JsonConvert.SerializeObject(new
                     {
                         Body = messageBody,
@@ -201,13 +215,31 @@ namespace IoT.Device
         private void Device_Load(object sender, EventArgs e)
         {
             CheckForIllegalCrossThreadCalls = false;
-            btnRegister_Click(sender, e);
         }
 
         private async void btnReadDT_Click(object sender, EventArgs e)
-        { 
-            var twin = await iotClient.GetTwinAsync();
+        {
+            var twin = await deviceClient.GetTwinAsync();
             tbDTRead.Text = twin.ToJson(Formatting.Indented);
+            Log("Device Twin content was read");
+        }
+
+        private async void btnModuleTwinDesiredPropsSubsr_Click(object sender, EventArgs e)
+        {
+            await moduleClient.SetDesiredPropertyUpdateCallbackAsync((TwinCollection desiredProperties, object userContext) => 
+            {
+                tbModuletwinDesProps.Text = JsonConvert.SerializeObject(desiredProperties);
+                return Task.CompletedTask;
+            }, null);
+        }
+
+        private async void btnModuleTwinRepProps_Click(object sender, EventArgs e)
+        {
+            TwinCollection reportedProperties = new TwinCollection
+            {
+                ["MyDateTimeLastDesiredPropertyChangeReceived"] = tbModuleTwinRepProps.Text
+            };
+            await moduleClient.UpdateReportedPropertiesAsync(reportedProperties);
         }
     }
 }

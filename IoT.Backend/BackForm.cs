@@ -193,6 +193,7 @@ namespace IoT.Backend
         {
             var twin = await registryManager.GetTwinAsync(_parameters.DeviceId);
             tbDTRead.Text = twin.ToJson(Formatting.Indented);
+            Log("Device Twin content was read");
         }
 
         private void Log(string text)
@@ -210,6 +211,11 @@ namespace IoT.Backend
         private void btnClean_Click(object sender, EventArgs e)
         {
             lbStatus.Text = "";
+        }
+
+        private void tbSentMsg_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

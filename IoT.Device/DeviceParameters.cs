@@ -40,5 +40,7 @@ namespace IoT.Device
         ///     Mqtt_WebSocket_Only, Mqtt_Tcp_Only, Amqp, Amqp_WebSocket_Only, Amqp_Tcp_only, and Http1.
         /// </summary>
         public TransportType TransportType = TransportType.Amqp;
+
+        public string ModuleConnectionString = ConfigurationSettings.AppSettings["ModuleConnectionString"];
     }
 }
