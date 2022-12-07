@@ -10,3 +10,5 @@
 *.cer
 *.pfx
 /.vs
+/IoT.Device/iothubx509device1
+/IoT.Device/iothubx509device1

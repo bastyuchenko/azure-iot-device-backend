@@ -58,7 +58,6 @@
             this.btnModuleTwinDesiredPropsSubsr = new System.Windows.Forms.Button();
             this.btnModuleTwinRepProps = new System.Windows.Forms.Button();
             this.tbModuletwinDesProps = new System.Windows.Forms.TextBox();
-            this.tbDeviceId = new System.Windows.Forms.TextBox();
             this.tbAssignedHub = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -66,6 +65,7 @@
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.btnCreateClient = new System.Windows.Forms.Button();
+            this.lbDeviceId = new System.Windows.Forms.Label();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -361,7 +361,7 @@
             this.btnGenStream.Location = new System.Drawing.Point(3, 2);
             this.btnGenStream.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnGenStream.Name = "btnGenStream";
-            this.btnGenStream.Size = new System.Drawing.Size(94, 42);
+            this.btnGenStream.Size = new System.Drawing.Size(94, 41);
             this.btnGenStream.TabIndex = 0;
             this.btnGenStream.Text = "Generate stream - Start";
             this.btnGenStream.UseVisualStyleBackColor = true;
@@ -372,7 +372,7 @@
             this.btnGenerateStreamStop.Location = new System.Drawing.Point(103, 2);
             this.btnGenerateStreamStop.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnGenerateStreamStop.Name = "btnGenerateStreamStop";
-            this.btnGenerateStreamStop.Size = new System.Drawing.Size(94, 42);
+            this.btnGenerateStreamStop.Size = new System.Drawing.Size(94, 41);
             this.btnGenerateStreamStop.TabIndex = 2;
             this.btnGenerateStreamStop.Text = "Generate stream - Stop";
             this.btnGenerateStreamStop.UseVisualStyleBackColor = true;
@@ -457,19 +457,6 @@
             this.tbModuletwinDesProps.Size = new System.Drawing.Size(321, 340);
             this.tbModuletwinDesProps.TabIndex = 3;
             // 
-            // tbDeviceId
-            // 
-            this.tbDeviceId.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbDeviceId.Location = new System.Drawing.Point(226, 2);
-            this.tbDeviceId.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tbDeviceId.Name = "tbDeviceId";
-            this.tbDeviceId.ReadOnly = true;
-            this.tbDeviceId.Size = new System.Drawing.Size(120, 23);
-            this.tbDeviceId.TabIndex = 0;
-            this.tbDeviceId.Text = "iothubx509device1";
-            // 
             // tbAssignedHub
             // 
             this.tbAssignedHub.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -526,7 +513,7 @@
             this.tableLayoutPanel4.Controls.Add(this.label2, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.tbAssignedHub, 4, 0);
             this.tableLayoutPanel4.Controls.Add(this.label3, 3, 0);
-            this.tableLayoutPanel4.Controls.Add(this.tbDeviceId, 2, 0);
+            this.tableLayoutPanel4.Controls.Add(this.lbDeviceId, 2, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
@@ -560,6 +547,17 @@
             this.btnCreateClient.UseVisualStyleBackColor = true;
             this.btnCreateClient.Click += new System.EventHandler(this.btnCreateClient_Click);
             // 
+            // lbDeviceId
+            // 
+            this.lbDeviceId.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbDeviceId.Location = new System.Drawing.Point(226, 2);
+            this.lbDeviceId.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lbDeviceId.Name = "lbDeviceId";
+            this.lbDeviceId.Size = new System.Drawing.Size(120, 71);
+            this.lbDeviceId.TabIndex = 0;
+            this.lbDeviceId.Text = "There is no reason to know SerialNumber, the SerialNumber is stored in certificat" +
+    "e.";
+            // 
             // tableLayoutPanel5
             // 
             this.tableLayoutPanel5.ColumnCount = 1;
@@ -572,7 +570,7 @@
             this.tableLayoutPanel5.RowCount = 2;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(1353, 816);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(1353, 791);
             this.tableLayoutPanel5.TabIndex = 9;
             // 
             // textBox1
@@ -669,7 +667,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.ClientSize = new System.Drawing.Size(1353, 816);
+            this.ClientSize = new System.Drawing.Size(1353, 791);
             this.Controls.Add(this.tableLayoutPanel5);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -709,7 +707,6 @@
         private System.Windows.Forms.TextBox lbStatus;
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TextBox tbDeviceId;
         private System.Windows.Forms.TextBox tbAssignedHub;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -750,5 +747,6 @@
         private System.Windows.Forms.Button btnModuleTwinDesiredPropsSubsr;
         private System.Windows.Forms.Button btnModuleTwinRepProps;
         private System.Windows.Forms.TextBox tbModuletwinDesProps;
+        private System.Windows.Forms.Label lbDeviceId;
     }
 }

@@ -1,23 +1,14 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Security.Cryptography.X509Certificates;
-using System.Security.Cryptography.Xml;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Microsoft.Azure.Devices.Client;
+﻿using Microsoft.Azure.Devices.Client;
 using Microsoft.Azure.Devices.Provisioning.Client;
 using Microsoft.Azure.Devices.Provisioning.Client.Transport;
 using Microsoft.Azure.Devices.Shared;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+using System;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 using Message = Microsoft.Azure.Devices.Client.Message;
 
 namespace IoT.Device
@@ -29,6 +20,9 @@ namespace IoT.Device
         private DeviceClient deviceClient;
         private CancellationTokenSource streamGenerationToken;
         private static ModuleClient moduleClient;
+        private SecurityProviderX509Certificate security;
+        private ProvisioningDetailsFileStorage provisioningDetailCache;
+        private ProvisioningResponse provisioningDetails;
 
         public Device()
         {
@@ -39,11 +33,16 @@ namespace IoT.Device
             _parameters = new DeviceParameters();
             x509Certificate = Helper.LoadProvisioningPfxCertificate(_parameters.CertificatePfxName, _parameters.CertificatePassword);
             Log($"[DONE] PFX Certificate was loaded...");
+
+            provisioningDetailCache = new ProvisioningDetailsFileStorage();
+            security = new SecurityProviderX509Certificate(x509Certificate);
+            provisioningDetails = provisioningDetailCache.GetProvisioningDetailResponseFromCache(security.GetRegistrationID());
+            tbAssignedHub.Text = provisioningDetails?.IotHubHostName;
         }
 
         private async void btnRegister_Click(object sender, EventArgs e)
         {
-            var security = new SecurityProviderX509Certificate(x509Certificate);
+            Log($"Initializing for registration Id {security.GetRegistrationID()}.");
             Log("Initializing the device provisioning client...");
             var provClient = ProvisioningDeviceClient.Create(
                 _parameters.GlobalDeviceEndpoint,
@@ -55,24 +54,27 @@ namespace IoT.Device
 
             Log("Registering with the device provisioning service... ");
             var result = await provClient.RegisterAsync();
-            tbDeviceId.Text = result.DeviceId;
-            tbAssignedHub.Text = result.AssignedHub;
+            provisioningDetails = new ProvisioningResponse() { IotHubHostName = result.AssignedHub, DeviceId = result.DeviceId };
+            provisioningDetailCache.SetProvisioningDetailResponse(security.GetRegistrationID(), provisioningDetails);
+            tbAssignedHub.Text = provisioningDetails?.IotHubHostName;
 
             Log($"Registration status: {result.Status}.");
             if (result.Status != ProvisioningRegistrationStatusType.Assigned)
                 throw new Exception("Registration status did not assign a hub, so exiting this sample.");
 
-            Log($"[DONE] Device {tbDeviceId.Text} registered to {result.AssignedHub}.");
+            Log($"[DONE] Device {security.GetRegistrationID()} registered to {result.AssignedHub}.");
         }
 
         private void btnCreateClient_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(tbAssignedHub.Text)) { MessageBox.Show("Please register device before start."); return; }
             Log("Creating X509 authentication for IoT Hub...");
+            var security = new SecurityProviderX509Certificate(x509Certificate);
             IAuthenticationMethod auth = new DeviceAuthenticationWithX509Certificate(
-                tbDeviceId.Text,
+                provisioningDetails.IotHubHostName,
                 x509Certificate);
 
-            deviceClient = DeviceClient.Create(tbAssignedHub.Text, auth, _parameters.TransportType);
+            deviceClient = DeviceClient.Create(provisioningDetails.IotHubHostName, auth, _parameters.TransportType);
             Log($"[DONE] Created DeviceClient instance to communicate through assigned IoT Hub...");
 
 
