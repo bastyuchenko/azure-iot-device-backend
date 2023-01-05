@@ -71,7 +71,7 @@ namespace IoT.Device
             Log("Creating X509 authentication for IoT Hub...");
             var security = new SecurityProviderX509Certificate(x509Certificate);
             IAuthenticationMethod auth = new DeviceAuthenticationWithX509Certificate(
-                provisioningDetails.IotHubHostName,
+                security.GetRegistrationID(),
                 x509Certificate);
 
             deviceClient = DeviceClient.Create(provisioningDetails.IotHubHostName, auth, _parameters.TransportType);
@@ -228,7 +228,7 @@ namespace IoT.Device
 
         private async void btnModuleTwinDesiredPropsSubsr_Click(object sender, EventArgs e)
         {
-            await moduleClient.SetDesiredPropertyUpdateCallbackAsync((TwinCollection desiredProperties, object userContext) => 
+            await moduleClient.SetDesiredPropertyUpdateCallbackAsync((TwinCollection desiredProperties, object userContext) =>
             {
                 tbModuletwinDesProps.Text = JsonConvert.SerializeObject(desiredProperties);
                 return Task.CompletedTask;
@@ -242,6 +242,34 @@ namespace IoT.Device
                 ["MyDateTimeLastDesiredPropertyChangeReceived"] = tbModuleTwinRepProps.Text
             };
             await moduleClient.UpdateReportedPropertiesAsync(reportedProperties);
+        }
+
+        private async void btnSubscribeDirectMethod_Click(object sender, EventArgs e)
+        {
+            await deviceClient.SetMethodHandlerAsync("SetTelemetryInterval", SetTelemetryInterval, null);
+        }
+
+        private Task<MethodResponse> SetTelemetryInterval(MethodRequest methodRequest, object userContext)
+        {
+            string data = Encoding.UTF8.GetString(methodRequest.Data);
+
+            // Check the payload is a single integer value.
+            if (int.TryParse(data, out int telemetryIntervalInSeconds))
+            {
+                var s_telemetryInterval = TimeSpan.FromSeconds(telemetryIntervalInSeconds);
+
+                MessageBox.Show(s_telemetryInterval.TotalSeconds.ToString());
+
+                // Acknowlege the direct method call with a 200 success message.
+                string result = $"{{\"result\":\"Executed direct method: {methodRequest.Name}\"}}";
+                return Task.FromResult(new MethodResponse(Encoding.UTF8.GetBytes(result), 200));
+            }
+            else
+            {
+                // Acknowlege the direct method call with a 400 error message.
+                string result = "{\"result\":\"Invalid parameter\"}";
+                return Task.FromResult(new MethodResponse(Encoding.UTF8.GetBytes(result), 400));
+            }
         }
     }
 }

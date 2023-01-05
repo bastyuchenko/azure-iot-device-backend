@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,7 +11,6 @@ using Message = Microsoft.Azure.Devices.Message;
 using Azure.Messaging.EventHubs.Processor;
 using Azure.Messaging.EventHubs;
 using Azure.Storage.Blobs;
-using System.Diagnostics.Tracing;
 using Newtonsoft.Json;
 
 namespace IoT.Backend
@@ -213,9 +210,26 @@ namespace IoT.Backend
             lbStatus.Text = "";
         }
 
-        private void tbSentMsg_TextChanged(object sender, EventArgs e)
+        private async void btnSendRequest_DirectMethod_Click(object sender, EventArgs e)
         {
+            await InvokeMethodAsync(tbDeviceId.Text, _serviceClient);
+        }
 
+        // Invoke the direct method on the device, passing the payload.
+        private static async Task InvokeMethodAsync(string deviceId, ServiceClient serviceClient)
+        {
+            var methodInvocation = new CloudToDeviceMethod("SetTelemetryInterval")
+            {
+                ResponseTimeout = TimeSpan.FromSeconds(30),
+            };
+            methodInvocation.SetPayloadJson("10");
+
+            MessageBox.Show($"Invoking direct method for device: {deviceId}");
+
+            // Invoke the direct method asynchronously and get the response from the simulated device.
+            CloudToDeviceMethodResult response = await serviceClient.InvokeDeviceMethodAsync(deviceId, methodInvocation);
+
+            MessageBox.Show($"Response status: {response.Status}, payload:\n\t{response.GetPayloadAsJson()}");
         }
     }
 }
