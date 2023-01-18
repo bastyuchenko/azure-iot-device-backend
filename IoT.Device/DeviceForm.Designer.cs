@@ -59,6 +59,8 @@
             this.btnModuleTwinRepProps = new System.Windows.Forms.Button();
             this.tbModuletwinDesProps = new System.Windows.Forms.TextBox();
             this.tabDirectMethods = new System.Windows.Forms.TabPage();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tbDirectMethodName = new System.Windows.Forms.TextBox();
             this.btnSubscribeDirectMethod = new System.Windows.Forms.Button();
             this.tbAssignedHub = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -99,9 +101,10 @@
             // btnRegister
             // 
             this.btnRegister.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnRegister.Location = new System.Drawing.Point(3, 3);
+            this.btnRegister.Location = new System.Drawing.Point(3, 2);
+            this.btnRegister.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRegister.Name = "btnRegister";
-            this.btnRegister.Size = new System.Drawing.Size(172, 38);
+            this.btnRegister.Size = new System.Drawing.Size(150, 29);
             this.btnRegister.TabIndex = 2;
             this.btnRegister.Text = "Register";
             this.btnRegister.UseVisualStyleBackColor = true;
@@ -113,10 +116,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lbStatus.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.lbStatus.Location = new System.Drawing.Point(3, 3);
+            this.lbStatus.Location = new System.Drawing.Point(3, 2);
+            this.lbStatus.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lbStatus.Multiline = true;
             this.lbStatus.Name = "lbStatus";
-            this.lbStatus.Size = new System.Drawing.Size(764, 966);
+            this.lbStatus.Size = new System.Drawing.Size(667, 725);
             this.lbStatus.TabIndex = 3;
             // 
             // tabControl
@@ -129,20 +133,22 @@
             this.tabControl.Controls.Add(this.tabPage4);
             this.tabControl.Controls.Add(this.tabModuleTwin);
             this.tabControl.Controls.Add(this.tabDirectMethods);
-            this.tabControl.Location = new System.Drawing.Point(773, 3);
+            this.tabControl.Location = new System.Drawing.Point(676, 2);
+            this.tabControl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(764, 966);
+            this.tabControl.Size = new System.Drawing.Size(668, 725);
             this.tabControl.TabIndex = 5;
             // 
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.Gray;
             this.tabPage1.Controls.Add(this.tableLayoutPanel9);
-            this.tabPage1.Location = new System.Drawing.Point(4, 29);
+            this.tabPage1.Location = new System.Drawing.Point(4, 24);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabPage1.Size = new System.Drawing.Size(756, 933);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPage1.Size = new System.Drawing.Size(660, 697);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Send to/Receive from IoT Hub";
             // 
@@ -156,20 +162,20 @@
             this.tableLayoutPanel9.Controls.Add(this.btnStartReceiving, 1, 1);
             this.tableLayoutPanel9.Controls.Add(this.tbMsg, 0, 0);
             this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel9.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 2);
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
             this.tableLayoutPanel9.RowCount = 2;
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(750, 927);
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(654, 693);
             this.tableLayoutPanel9.TabIndex = 7;
             // 
             // btnSendMsg
             // 
-            this.btnSendMsg.Location = new System.Drawing.Point(652, 3);
+            this.btnSendMsg.Location = new System.Drawing.Point(569, 2);
+            this.btnSendMsg.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSendMsg.Name = "btnSendMsg";
-            this.btnSendMsg.Size = new System.Drawing.Size(93, 29);
+            this.btnSendMsg.Size = new System.Drawing.Size(81, 22);
             this.btnSendMsg.TabIndex = 1;
             this.btnSendMsg.Text = "Send msg to IoT";
             this.btnSendMsg.UseVisualStyleBackColor = true;
@@ -179,19 +185,21 @@
             // 
             this.tbReceivedMsg.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.tbReceivedMsg.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbReceivedMsg.Location = new System.Drawing.Point(3, 466);
+            this.tbReceivedMsg.Location = new System.Drawing.Point(3, 348);
+            this.tbReceivedMsg.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbReceivedMsg.Multiline = true;
             this.tbReceivedMsg.Name = "tbReceivedMsg";
             this.tbReceivedMsg.ReadOnly = true;
             this.tbReceivedMsg.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.tbReceivedMsg.Size = new System.Drawing.Size(643, 458);
+            this.tbReceivedMsg.Size = new System.Drawing.Size(560, 343);
             this.tbReceivedMsg.TabIndex = 6;
             // 
             // btnStartReceiving
             // 
-            this.btnStartReceiving.Location = new System.Drawing.Point(652, 466);
+            this.btnStartReceiving.Location = new System.Drawing.Point(569, 348);
+            this.btnStartReceiving.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnStartReceiving.Name = "btnStartReceiving";
-            this.btnStartReceiving.Size = new System.Drawing.Size(93, 29);
+            this.btnStartReceiving.Size = new System.Drawing.Size(81, 22);
             this.btnStartReceiving.TabIndex = 0;
             this.btnStartReceiving.Text = "Receive";
             this.btnStartReceiving.UseVisualStyleBackColor = true;
@@ -200,19 +208,21 @@
             // tbMsg
             // 
             this.tbMsg.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbMsg.Location = new System.Drawing.Point(3, 3);
+            this.tbMsg.Location = new System.Drawing.Point(3, 2);
+            this.tbMsg.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbMsg.Multiline = true;
             this.tbMsg.Name = "tbMsg";
-            this.tbMsg.Size = new System.Drawing.Size(643, 457);
+            this.tbMsg.Size = new System.Drawing.Size(560, 342);
             this.tbMsg.TabIndex = 0;
             // 
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.SystemColors.ControlDark;
             this.tabPage3.Controls.Add(this.tableLayoutPanel1);
-            this.tabPage3.Location = new System.Drawing.Point(4, 29);
+            this.tabPage3.Location = new System.Drawing.Point(4, 24);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(756, 933);
+            this.tabPage3.Size = new System.Drawing.Size(660, 697);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "DeviceTwin";
             // 
@@ -227,12 +237,11 @@
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(756, 933);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(660, 697);
             this.tableLayoutPanel1.TabIndex = 10;
             // 
             // tbDTReport
@@ -240,10 +249,11 @@
             this.tbDTReport.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbDTReport.Location = new System.Drawing.Point(3, 3);
+            this.tbDTReport.Location = new System.Drawing.Point(3, 2);
+            this.tbDTReport.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbDTReport.Multiline = true;
             this.tbDTReport.Name = "tbDTReport";
-            this.tbDTReport.Size = new System.Drawing.Size(644, 460);
+            this.tbDTReport.Size = new System.Drawing.Size(561, 344);
             this.tbDTReport.TabIndex = 7;
             // 
             // tbDTRead
@@ -252,21 +262,23 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbDTRead.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.tbDTRead.Location = new System.Drawing.Point(3, 469);
+            this.tbDTRead.Location = new System.Drawing.Point(3, 350);
+            this.tbDTRead.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbDTRead.Multiline = true;
             this.tbDTRead.Name = "tbDTRead";
             this.tbDTRead.ReadOnly = true;
             this.tbDTRead.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.tbDTRead.Size = new System.Drawing.Size(644, 461);
+            this.tbDTRead.Size = new System.Drawing.Size(561, 345);
             this.tbDTRead.TabIndex = 8;
             this.tbDTRead.WordWrap = false;
             // 
             // btnWReported
             // 
             this.btnWReported.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnWReported.Location = new System.Drawing.Point(670, 3);
+            this.btnWReported.Location = new System.Drawing.Point(584, 2);
+            this.btnWReported.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnWReported.Name = "btnWReported";
-            this.btnWReported.Size = new System.Drawing.Size(83, 59);
+            this.btnWReported.Size = new System.Drawing.Size(73, 44);
             this.btnWReported.TabIndex = 0;
             this.btnWReported.Text = "write Reported";
             this.btnWReported.UseVisualStyleBackColor = true;
@@ -278,21 +290,21 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Controls.Add(this.btnReadDT, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnDTReadDesired, 0, 1);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(653, 470);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(570, 351);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 26.27737F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 73.72263F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(98, 317);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(86, 238);
             this.tableLayoutPanel2.TabIndex = 9;
             // 
             // btnReadDT
             // 
             this.btnReadDT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnReadDT.Location = new System.Drawing.Point(4, 3);
+            this.btnReadDT.Location = new System.Drawing.Point(3, 2);
+            this.btnReadDT.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnReadDT.Name = "btnReadDT";
-            this.btnReadDT.Size = new System.Drawing.Size(91, 77);
+            this.btnReadDT.Size = new System.Drawing.Size(80, 58);
             this.btnReadDT.TabIndex = 9;
             this.btnReadDT.Text = "read Device Twin";
             this.btnReadDT.UseVisualStyleBackColor = true;
@@ -301,9 +313,10 @@
             // btnDTReadDesired
             // 
             this.btnDTReadDesired.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDTReadDesired.Location = new System.Drawing.Point(4, 86);
+            this.btnDTReadDesired.Location = new System.Drawing.Point(3, 64);
+            this.btnDTReadDesired.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDTReadDesired.Name = "btnDTReadDesired";
-            this.btnDTReadDesired.Size = new System.Drawing.Size(91, 139);
+            this.btnDTReadDesired.Size = new System.Drawing.Size(80, 104);
             this.btnDTReadDesired.TabIndex = 1;
             this.btnDTReadDesired.Text = "subscribe on Device Twin Desired Properties";
             this.btnDTReadDesired.UseVisualStyleBackColor = true;
@@ -313,9 +326,10 @@
             // 
             this.tabPage4.BackColor = System.Drawing.Color.Gray;
             this.tabPage4.Controls.Add(this.tableLayoutPanel10);
-            this.tabPage4.Location = new System.Drawing.Point(4, 29);
+            this.tabPage4.Location = new System.Drawing.Point(4, 24);
+            this.tabPage4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(755, 934);
+            this.tabPage4.Size = new System.Drawing.Size(660, 697);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Generate stream";
             // 
@@ -327,12 +341,11 @@
             this.tableLayoutPanel10.Controls.Add(this.tbMsgsExample, 0, 1);
             this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel10.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel10.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tableLayoutPanel10.Name = "tableLayoutPanel10";
             this.tableLayoutPanel10.RowCount = 2;
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.604017F));
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 92.39598F));
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(755, 934);
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(660, 697);
             this.tableLayoutPanel10.TabIndex = 3;
             // 
             // tableLayoutPanel11
@@ -342,19 +355,19 @@
             this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel11.Controls.Add(this.btnGenStream, 0, 0);
             this.tableLayoutPanel11.Controls.Add(this.btnGenerateStreamStop, 1, 0);
-            this.tableLayoutPanel11.Location = new System.Drawing.Point(3, 4);
-            this.tableLayoutPanel11.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tableLayoutPanel11.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel11.Name = "tableLayoutPanel11";
             this.tableLayoutPanel11.RowCount = 1;
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel11.Size = new System.Drawing.Size(229, 61);
+            this.tableLayoutPanel11.Size = new System.Drawing.Size(200, 46);
             this.tableLayoutPanel11.TabIndex = 0;
             // 
             // btnGenStream
             // 
-            this.btnGenStream.Location = new System.Drawing.Point(3, 3);
+            this.btnGenStream.Location = new System.Drawing.Point(3, 2);
+            this.btnGenStream.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnGenStream.Name = "btnGenStream";
-            this.btnGenStream.Size = new System.Drawing.Size(107, 55);
+            this.btnGenStream.Size = new System.Drawing.Size(94, 41);
             this.btnGenStream.TabIndex = 0;
             this.btnGenStream.Text = "Generate stream - Start";
             this.btnGenStream.UseVisualStyleBackColor = true;
@@ -362,9 +375,10 @@
             // 
             // btnGenerateStreamStop
             // 
-            this.btnGenerateStreamStop.Location = new System.Drawing.Point(117, 3);
+            this.btnGenerateStreamStop.Location = new System.Drawing.Point(103, 2);
+            this.btnGenerateStreamStop.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnGenerateStreamStop.Name = "btnGenerateStreamStop";
-            this.btnGenerateStreamStop.Size = new System.Drawing.Size(107, 55);
+            this.btnGenerateStreamStop.Size = new System.Drawing.Size(94, 41);
             this.btnGenerateStreamStop.TabIndex = 2;
             this.btnGenerateStreamStop.Text = "Generate stream - Stop";
             this.btnGenerateStreamStop.UseVisualStyleBackColor = true;
@@ -373,23 +387,23 @@
             // tbMsgsExample
             // 
             this.tbMsgsExample.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbMsgsExample.Location = new System.Drawing.Point(3, 74);
+            this.tbMsgsExample.Location = new System.Drawing.Point(3, 54);
+            this.tbMsgsExample.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbMsgsExample.Multiline = true;
             this.tbMsgsExample.Name = "tbMsgsExample";
             this.tbMsgsExample.ReadOnly = true;
             this.tbMsgsExample.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.tbMsgsExample.Size = new System.Drawing.Size(749, 857);
+            this.tbMsgsExample.Size = new System.Drawing.Size(654, 641);
             this.tbMsgsExample.TabIndex = 1;
             // 
             // tabModuleTwin
             // 
             this.tabModuleTwin.BackColor = System.Drawing.Color.Gray;
             this.tabModuleTwin.Controls.Add(this.tableLayoutPanel12);
-            this.tabModuleTwin.Location = new System.Drawing.Point(4, 29);
-            this.tabModuleTwin.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tabModuleTwin.Location = new System.Drawing.Point(4, 24);
             this.tabModuleTwin.Name = "tabModuleTwin";
-            this.tabModuleTwin.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabModuleTwin.Size = new System.Drawing.Size(755, 934);
+            this.tabModuleTwin.Padding = new System.Windows.Forms.Padding(3);
+            this.tabModuleTwin.Size = new System.Drawing.Size(660, 697);
             this.tabModuleTwin.TabIndex = 4;
             this.tabModuleTwin.Text = "ModuleTwin";
             // 
@@ -403,31 +417,28 @@
             this.tableLayoutPanel12.Controls.Add(this.btnModuleTwinRepProps, 1, 0);
             this.tableLayoutPanel12.Controls.Add(this.tbModuletwinDesProps, 0, 1);
             this.tableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel12.Location = new System.Drawing.Point(3, 4);
-            this.tableLayoutPanel12.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tableLayoutPanel12.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel12.Name = "tableLayoutPanel12";
             this.tableLayoutPanel12.RowCount = 2;
             this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel12.Size = new System.Drawing.Size(749, 926);
+            this.tableLayoutPanel12.Size = new System.Drawing.Size(654, 691);
             this.tableLayoutPanel12.TabIndex = 0;
             // 
             // tbModuleTwinRepProps
             // 
             this.tbModuleTwinRepProps.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbModuleTwinRepProps.Location = new System.Drawing.Point(3, 4);
-            this.tbModuleTwinRepProps.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbModuleTwinRepProps.Location = new System.Drawing.Point(3, 3);
             this.tbModuleTwinRepProps.Multiline = true;
             this.tbModuleTwinRepProps.Name = "tbModuleTwinRepProps";
-            this.tbModuleTwinRepProps.Size = new System.Drawing.Size(368, 455);
+            this.tbModuleTwinRepProps.Size = new System.Drawing.Size(321, 339);
             this.tbModuleTwinRepProps.TabIndex = 0;
             // 
             // btnModuleTwinDesiredPropsSubsr
             // 
-            this.btnModuleTwinDesiredPropsSubsr.Location = new System.Drawing.Point(377, 467);
-            this.btnModuleTwinDesiredPropsSubsr.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnModuleTwinDesiredPropsSubsr.Location = new System.Drawing.Point(330, 348);
             this.btnModuleTwinDesiredPropsSubsr.Name = "btnModuleTwinDesiredPropsSubsr";
-            this.btnModuleTwinDesiredPropsSubsr.Size = new System.Drawing.Size(129, 85);
+            this.btnModuleTwinDesiredPropsSubsr.Size = new System.Drawing.Size(113, 64);
             this.btnModuleTwinDesiredPropsSubsr.TabIndex = 1;
             this.btnModuleTwinDesiredPropsSubsr.Text = "Subscribe module twin desired props";
             this.btnModuleTwinDesiredPropsSubsr.UseVisualStyleBackColor = true;
@@ -435,10 +446,9 @@
             // 
             // btnModuleTwinRepProps
             // 
-            this.btnModuleTwinRepProps.Location = new System.Drawing.Point(377, 4);
-            this.btnModuleTwinRepProps.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnModuleTwinRepProps.Location = new System.Drawing.Point(330, 3);
             this.btnModuleTwinRepProps.Name = "btnModuleTwinRepProps";
-            this.btnModuleTwinRepProps.Size = new System.Drawing.Size(117, 68);
+            this.btnModuleTwinRepProps.Size = new System.Drawing.Size(102, 51);
             this.btnModuleTwinRepProps.TabIndex = 2;
             this.btnModuleTwinRepProps.Text = "Set reported props";
             this.btnModuleTwinRepProps.UseVisualStyleBackColor = true;
@@ -447,30 +457,46 @@
             // tbModuletwinDesProps
             // 
             this.tbModuletwinDesProps.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbModuletwinDesProps.Location = new System.Drawing.Point(3, 467);
-            this.tbModuletwinDesProps.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbModuletwinDesProps.Location = new System.Drawing.Point(3, 348);
             this.tbModuletwinDesProps.Multiline = true;
             this.tbModuletwinDesProps.Name = "tbModuletwinDesProps";
-            this.tbModuletwinDesProps.Size = new System.Drawing.Size(368, 455);
+            this.tbModuletwinDesProps.Size = new System.Drawing.Size(321, 340);
             this.tbModuletwinDesProps.TabIndex = 3;
             // 
             // tabDirectMethods
             // 
+            this.tabDirectMethods.Controls.Add(this.label4);
+            this.tabDirectMethods.Controls.Add(this.tbDirectMethodName);
             this.tabDirectMethods.Controls.Add(this.btnSubscribeDirectMethod);
-            this.tabDirectMethods.Location = new System.Drawing.Point(4, 29);
-            this.tabDirectMethods.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tabDirectMethods.Location = new System.Drawing.Point(4, 24);
             this.tabDirectMethods.Name = "tabDirectMethods";
-            this.tabDirectMethods.Size = new System.Drawing.Size(755, 934);
+            this.tabDirectMethods.Size = new System.Drawing.Size(660, 697);
             this.tabDirectMethods.TabIndex = 5;
             this.tabDirectMethods.Text = "Direct Methods";
             this.tabDirectMethods.UseVisualStyleBackColor = true;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(18, 33);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(116, 15);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Direct method name";
+            // 
+            // tbDirectMethodName
+            // 
+            this.tbDirectMethodName.Location = new System.Drawing.Point(140, 30);
+            this.tbDirectMethodName.Name = "tbDirectMethodName";
+            this.tbDirectMethodName.Size = new System.Drawing.Size(370, 23);
+            this.tbDirectMethodName.TabIndex = 3;
+            this.tbDirectMethodName.Text = "SetTelemetryInterval";
+            // 
             // btnSubscribeDirectMethod
             // 
-            this.btnSubscribeDirectMethod.Location = new System.Drawing.Point(617, 27);
-            this.btnSubscribeDirectMethod.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSubscribeDirectMethod.Location = new System.Drawing.Point(540, 20);
             this.btnSubscribeDirectMethod.Name = "btnSubscribeDirectMethod";
-            this.btnSubscribeDirectMethod.Size = new System.Drawing.Size(86, 80);
+            this.btnSubscribeDirectMethod.Size = new System.Drawing.Size(75, 60);
             this.btnSubscribeDirectMethod.TabIndex = 0;
             this.btnSubscribeDirectMethod.Text = "Subscribe direct method";
             this.btnSubscribeDirectMethod.UseVisualStyleBackColor = true;
@@ -479,27 +505,28 @@
             // tbAssignedHub
             // 
             this.tbAssignedHub.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbAssignedHub.Location = new System.Drawing.Point(514, 3);
+            this.tbAssignedHub.Location = new System.Drawing.Point(439, 2);
+            this.tbAssignedHub.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbAssignedHub.Name = "tbAssignedHub";
             this.tbAssignedHub.ReadOnly = true;
-            this.tbAssignedHub.Size = new System.Drawing.Size(1059, 27);
+            this.tbAssignedHub.Size = new System.Drawing.Size(927, 23);
             this.tbAssignedHub.TabIndex = 0;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(187, 0);
+            this.label2.Location = new System.Drawing.Point(165, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(71, 20);
+            this.label2.Size = new System.Drawing.Size(55, 15);
             this.label2.TabIndex = 4;
             this.label2.Text = "Device Id";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(407, 0);
+            this.label3.Location = new System.Drawing.Point(352, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(101, 20);
+            this.label3.Size = new System.Drawing.Size(81, 15);
             this.label3.TabIndex = 4;
             this.label3.Text = "Assigned Hub";
             // 
@@ -508,16 +535,15 @@
             this.tableLayoutPanel3.ColumnCount = 2;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel3.Controls.Add(this.lbStatus, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.tabControl, 1, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 112);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 84);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(1540, 972);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1347, 729);
             this.tableLayoutPanel3.TabIndex = 7;
             // 
             // tableLayoutPanel4
@@ -534,12 +560,11 @@
             this.tableLayoutPanel4.Controls.Add(this.label3, 3, 0);
             this.tableLayoutPanel4.Controls.Add(this.lbDeviceId, 2, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 4);
-            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(1540, 100);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(1347, 75);
             this.tableLayoutPanel4.TabIndex = 8;
             // 
             // tableLayoutPanel6
@@ -548,22 +573,20 @@
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel6.Controls.Add(this.btnRegister, 0, 0);
             this.tableLayoutPanel6.Controls.Add(this.btnCreateClient, 0, 1);
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 4);
-            this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 2;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 47.82609F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 52.17391F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(178, 92);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(156, 69);
             this.tableLayoutPanel6.TabIndex = 7;
             // 
             // btnCreateClient
             // 
             this.btnCreateClient.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnCreateClient.Location = new System.Drawing.Point(3, 48);
-            this.btnCreateClient.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnCreateClient.Location = new System.Drawing.Point(3, 36);
             this.btnCreateClient.Name = "btnCreateClient";
-            this.btnCreateClient.Size = new System.Drawing.Size(172, 40);
+            this.btnCreateClient.Size = new System.Drawing.Size(150, 30);
             this.btnCreateClient.TabIndex = 3;
             this.btnCreateClient.Text = "Create Device Client";
             this.btnCreateClient.UseVisualStyleBackColor = true;
@@ -572,10 +595,10 @@
             // lbDeviceId
             // 
             this.lbDeviceId.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbDeviceId.Location = new System.Drawing.Point(264, 3);
-            this.lbDeviceId.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.lbDeviceId.Location = new System.Drawing.Point(226, 2);
+            this.lbDeviceId.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lbDeviceId.Name = "lbDeviceId";
-            this.lbDeviceId.Size = new System.Drawing.Size(137, 94);
+            this.lbDeviceId.Size = new System.Drawing.Size(120, 71);
             this.lbDeviceId.TabIndex = 0;
             this.lbDeviceId.Text = "There is no reason to know SerialNumber, the SerialNumber is stored in certificat" +
     "e.";
@@ -588,12 +611,11 @@
             this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel3, 0, 1);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 2;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(1546, 1055);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(1353, 791);
             this.tableLayoutPanel5.TabIndex = 9;
             // 
             // textBox1
@@ -687,12 +709,13 @@
             // 
             // Device
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.ClientSize = new System.Drawing.Size(1546, 1055);
+            this.ClientSize = new System.Drawing.Size(1353, 791);
             this.Controls.Add(this.tableLayoutPanel5);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Device";
             this.Text = "Device";
             this.Load += new System.EventHandler(this.Device_Load);
@@ -712,6 +735,7 @@
             this.tableLayoutPanel12.ResumeLayout(false);
             this.tableLayoutPanel12.PerformLayout();
             this.tabDirectMethods.ResumeLayout(false);
+            this.tabDirectMethods.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
@@ -773,5 +797,7 @@
         private System.Windows.Forms.Label lbDeviceId;
         private System.Windows.Forms.TabPage tabDirectMethods;
         private System.Windows.Forms.Button btnSubscribeDirectMethod;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox tbDirectMethodName;
     }
 }

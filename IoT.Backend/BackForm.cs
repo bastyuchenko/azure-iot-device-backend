@@ -212,22 +212,16 @@ namespace IoT.Backend
 
         private async void btnSendRequest_DirectMethod_Click(object sender, EventArgs e)
         {
-            await InvokeMethodAsync(tbDeviceId.Text, _serviceClient);
-        }
-
-        // Invoke the direct method on the device, passing the payload.
-        private static async Task InvokeMethodAsync(string deviceId, ServiceClient serviceClient)
-        {
-            var methodInvocation = new CloudToDeviceMethod("SetTelemetryInterval")
+            var methodInvocation = new CloudToDeviceMethod(tbDirectMethodName.Text)
             {
                 ResponseTimeout = TimeSpan.FromSeconds(30),
             };
-            methodInvocation.SetPayloadJson("10");
+            methodInvocation.SetPayloadJson(tbDirectMethodPayload.Text);
 
-            MessageBox.Show($"Invoking direct method for device: {deviceId}");
+            MessageBox.Show($"Invoking direct method for device: {tbDeviceId.Text}");
 
             // Invoke the direct method asynchronously and get the response from the simulated device.
-            CloudToDeviceMethodResult response = await serviceClient.InvokeDeviceMethodAsync(deviceId, methodInvocation);
+            CloudToDeviceMethodResult response = await _serviceClient.InvokeDeviceMethodAsync(tbDeviceId.Text, methodInvocation);
 
             MessageBox.Show($"Response status: {response.Status}, payload:\n\t{response.GetPayloadAsJson()}");
         }

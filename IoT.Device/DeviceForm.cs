@@ -34,8 +34,11 @@ namespace IoT.Device
             x509Certificate = Helper.LoadProvisioningPfxCertificate(_parameters.CertificatePfxName, _parameters.CertificatePassword);
             Log($"[DONE] PFX Certificate was loaded...");
 
+            // https://learn.microsoft.com/en-us/azure/iot-dps/concepts-deploy-at-scale#reprovisioning-sample
             provisioningDetailCache = new ProvisioningDetailsFileStorage();
             security = new SecurityProviderX509Certificate(x509Certificate);
+
+            // https://learn.microsoft.com/en-us/azure/iot-dps/concepts-deploy-at-scale#reprovisioning-sample
             provisioningDetails = provisioningDetailCache.GetProvisioningDetailResponseFromCache(security.GetRegistrationID());
             tbAssignedHub.Text = provisioningDetails?.IotHubHostName;
         }
@@ -246,30 +249,31 @@ namespace IoT.Device
 
         private async void btnSubscribeDirectMethod_Click(object sender, EventArgs e)
         {
-            await deviceClient.SetMethodHandlerAsync("SetTelemetryInterval", SetTelemetryInterval, null);
-        }
+            await deviceClient.SetMethodHandlerAsync(
+                tbDirectMethodName.Text,
+                (MethodRequest methodRequest, object userContext) =>
+                {
+                    string data = Encoding.UTF8.GetString(methodRequest.Data);
 
-        private Task<MethodResponse> SetTelemetryInterval(MethodRequest methodRequest, object userContext)
-        {
-            string data = Encoding.UTF8.GetString(methodRequest.Data);
+                    // Check the payload is a single integer value.
+                    if (int.TryParse(data, out int telemetryIntervalInSeconds))
+                    {
+                        var s_telemetryInterval = TimeSpan.FromSeconds(telemetryIntervalInSeconds);
 
-            // Check the payload is a single integer value.
-            if (int.TryParse(data, out int telemetryIntervalInSeconds))
-            {
-                var s_telemetryInterval = TimeSpan.FromSeconds(telemetryIntervalInSeconds);
+                        MessageBox.Show(s_telemetryInterval.TotalSeconds.ToString());
 
-                MessageBox.Show(s_telemetryInterval.TotalSeconds.ToString());
-
-                // Acknowlege the direct method call with a 200 success message.
-                string result = $"{{\"result\":\"Executed direct method: {methodRequest.Name}\"}}";
-                return Task.FromResult(new MethodResponse(Encoding.UTF8.GetBytes(result), 200));
-            }
-            else
-            {
-                // Acknowlege the direct method call with a 400 error message.
-                string result = "{\"result\":\"Invalid parameter\"}";
-                return Task.FromResult(new MethodResponse(Encoding.UTF8.GetBytes(result), 400));
-            }
+                        // Acknowlege the direct method call with a 200 success message.
+                        string result = $"{{\"result\":\"Executed direct method: {methodRequest.Name}\"}}";
+                        return Task.FromResult(new MethodResponse(Encoding.UTF8.GetBytes(result), 200));
+                    }
+                    else
+                    {
+                        // Acknowlege the direct method call with a 400 error message.
+                        string result = "{\"result\":\"Invalid parameter\"}";
+                        return Task.FromResult(new MethodResponse(Encoding.UTF8.GetBytes(result), 400));
+                    }
+                },
+                null);
         }
     }
 }

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace IoT.Device
 {
+    // https://learn.microsoft.com/en-us/azure/iot-dps/concepts-deploy-at-scale#reprovisioning-sample
     public class ProvisioningDetailsFileStorage
     {
         private string dataDirectory = null;
