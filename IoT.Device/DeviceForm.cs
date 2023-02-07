@@ -31,7 +31,7 @@ namespace IoT.Device
             streamGenerationToken = new CancellationTokenSource();
 
             _parameters = new DeviceParameters();
-            x509Certificate = Helper.LoadProvisioningPfxCertificate(_parameters.CertificatePfxName, _parameters.CertificatePassword);
+            x509Certificate = Helper.LoadProvisioningCertificate(_parameters.CertificateName, _parameters.CertificatePrivateKeyName, _parameters.CertificatePassword);
             Log($"[DONE] PFX Certificate was loaded...");
 
             // https://learn.microsoft.com/en-us/azure/iot-dps/concepts-deploy-at-scale#reprovisioning-sample

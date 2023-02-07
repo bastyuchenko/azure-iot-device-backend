@@ -13,7 +13,7 @@ namespace IoT.Device
         /// <summary>
         ///     The CER certificate to load for device provisioning authentication.
         /// </summary>
-        public string CertificateCerName = "certificate.cer";
+        public string CertificateCerName = "deviceName-provisioning-cert.pem";
 
         /// <summary>
         ///     "The password of the PFX certificate file. If not specified, the program will prompt at run time."
@@ -21,9 +21,14 @@ namespace IoT.Device
         public string CertificatePassword = ConfigurationSettings.AppSettings["CertificatePassword"];
 
         /// <summary>
-        ///     "The PFX certificate to load for device provisioning authentication."
+        ///     "The certificate with public key to load for device provisioning authentication."
         /// </summary>
-        public string CertificatePfxName = "certificate.pfx";
+        public string CertificateName = "deviceName-provisioning-cert.pem";
+
+        /// <summary>
+        ///     "The private key to load for device provisioning authentication."
+        /// </summary>
+        public string CertificatePrivateKeyName = "deviceName-provisioning-key.pem";
 
         /// <summary>
         ///     The global endpoint for devices to connect to.
