@@ -1,10 +1,5 @@
 ﻿using Microsoft.Azure.Devices.Client;
-using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IoT.Device
 {
@@ -44,7 +39,7 @@ namespace IoT.Device
         ///     The transport to use to communicate with the device provisioning instance. Possible values include Mqtt,
         ///     Mqtt_WebSocket_Only, Mqtt_Tcp_Only, Amqp, Amqp_WebSocket_Only, Amqp_Tcp_only, and Http1.
         /// </summary>
-        public TransportType TransportType = TransportType.Amqp;
+        public TransportType TransportType = TransportType.Mqtt;
 
         public string ModuleConnectionString = ConfigurationSettings.AppSettings["ModuleConnectionString"];
     }

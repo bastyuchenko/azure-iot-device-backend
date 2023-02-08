@@ -1,5 +1,4 @@
-﻿using System;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 
 namespace GenerateCertificates.Certificates
@@ -30,19 +29,11 @@ namespace GenerateCertificates.Certificates
             request.CertificateExtensions.Add(
                 new X509KeyUsageExtension(X509KeyUsageFlags.DigitalSignature, true));
 
-            //request.CertificateExtensions.Add(
-            //    new X509EnhancedKeyUsageExtension(
-            //        new OidCollection
-            //        { new("1.3.6.1.5.5.7.3.2") // clientAuth http://oid-info.com/get/1.3.6.1.5.5.7.3
-            //                                    },
-            //        false));
-
             return new Certificate(
                 request.CreateSelfSigned(
                     DateTimeOffset.UtcNow.AddDays(-1),
                     DateTimeOffset.UtcNow.AddYears(10)));
         }
-
 
         /// <summary>
         ///     Generates a self-signed elliptic curve certificate.
@@ -105,5 +96,3 @@ namespace GenerateCertificates.Certificates
         }
     }
 }
-
-

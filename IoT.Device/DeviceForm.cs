@@ -80,8 +80,6 @@ namespace IoT.Device
             deviceClient = DeviceClient.Create(provisioningDetails.IotHubHostName, auth, _parameters.TransportType);
             Log($"[DONE] Created DeviceClient instance to communicate through assigned IoT Hub...");
 
-
-
             moduleClient = ModuleClient.CreateFromConnectionString(_parameters.ModuleConnectionString, _parameters.TransportType);
             moduleClient.SetConnectionStatusChangesHandler(
                 (ConnectionStatus status, ConnectionStatusChangeReason reason) =>
@@ -135,7 +133,6 @@ namespace IoT.Device
             connectivity = new TwinCollection();
             connectivity["type"] = "cellular";
             reportedProperties["connectivity"] = connectivity;
-
 
             reportedProperties["body"] = tbDTReport.Text;
 

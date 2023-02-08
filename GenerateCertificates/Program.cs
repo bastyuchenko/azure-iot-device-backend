@@ -1,13 +1,11 @@
 ﻿using GenerateCertificates.Certificates;
-using System.IO;
-using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 
 namespace GenerateCertificates
 {
     internal class Program
     {
-        static async Task Main(string[] args)
+        private static async Task Main(string[] args)
         {
             var provisioningCertificate = Certificate.GenerateRsaCertificate("iothubx509device1");
             var signatureVerifyCertificate = Certificate.GenerateEcdsaCertificate("iothubx509device1Ecdsa");

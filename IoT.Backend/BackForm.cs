@@ -1,17 +1,17 @@
-﻿using System;
+﻿using Azure.Messaging.EventHubs;
+using Azure.Messaging.EventHubs.Consumer;
+using Azure.Messaging.EventHubs.Processor;
+using Azure.Storage.Blobs;
+using Microsoft.Azure.Devices;
+using Microsoft.Azure.Devices.Shared;
+using Newtonsoft.Json;
+using System;
 using System.Configuration;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Azure.Messaging.EventHubs.Consumer;
-using Microsoft.Azure.Devices;
-using Microsoft.Azure.Devices.Shared;
 using Message = Microsoft.Azure.Devices.Message;
-using Azure.Messaging.EventHubs.Processor;
-using Azure.Messaging.EventHubs;
-using Azure.Storage.Blobs;
-using Newtonsoft.Json;
 
 namespace IoT.Backend
 {
@@ -23,7 +23,7 @@ namespace IoT.Backend
 
         private RegistryManager registryManager;
 
-        EventProcessorClient processor;
+        private EventProcessorClient processor;
 
         public BackForm()
         {
