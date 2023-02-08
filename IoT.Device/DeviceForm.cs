@@ -110,17 +110,32 @@ namespace IoT.Device
             await deviceClient.SetReceiveMessageHandlerAsync(
                 async (Message message, object lbStatus) =>
                 {
-                    ((TextBox)tbReceivedMsg).AppendText(JsonConvert.SerializeObject(
-                        new
-                        {
-                            Body = Encoding.UTF8.GetString(message.GetBytes()),
-                            message.Properties,
-                            message.MessageId,
-                            message.To,
-                            message.CorrelationId
-                        }, Formatting.Indented));
+                    try
+                    {
 
-                    await deviceClient.CompleteAsync(message);
+
+                        ((TextBox)tbReceivedMsg).AppendText(JsonConvert.SerializeObject(
+                            new
+                            {
+                                Body = Encoding.UTF8.GetString(message.GetBytes()),
+                                message.Properties,
+                                message.MessageId,
+                                message.To,
+                                message.CorrelationId
+                            }, Formatting.Indented));
+
+                        //////
+                        var message2 = new Message(Encoding.UTF8.GetBytes(tbMsg.Text));
+                        await deviceClient.SendEventAsync(message2);
+                        //////
+
+                        await deviceClient.CompleteAsync(message);
+                    }
+                    catch (Exception)
+                    {
+
+                        throw;
+                    }
                 },
                 lbStatus).ConfigureAwait(false);
         }
