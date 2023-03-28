@@ -28,470 +28,469 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tabControl = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnStartReceiving = new System.Windows.Forms.Button();
-            this.btnStopReceiving = new System.Windows.Forms.Button();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.tbMessageId = new System.Windows.Forms.TextBox();
-            this.tbCorrelationId = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.tbReceivedMsg = new System.Windows.Forms.TextBox();
-            this.btnSendToDevice = new System.Windows.Forms.Button();
-            this.tbSentMsg = new System.Windows.Forms.TextBox();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
-            this.tbDTdesired = new System.Windows.Forms.TextBox();
-            this.btnReadDT = new System.Windows.Forms.Button();
-            this.tbDTRead = new System.Windows.Forms.TextBox();
-            this.btnWDesired = new System.Windows.Forms.Button();
-            this.tabDirectMethod = new System.Windows.Forms.TabPage();
-            this.label5 = new System.Windows.Forms.Label();
-            this.tbDirectMethodPayload = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.tbDirectMethodName = new System.Windows.Forms.TextBox();
-            this.btnSendRequest_DirectMethod = new System.Windows.Forms.Button();
-            this.lbStatus = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tbDeviceId = new System.Windows.Forms.TextBox();
-            this.btnClean = new System.Windows.Forms.Button();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.tabControl.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tableLayoutPanel4.SuspendLayout();
-            this.tableLayoutPanel6.SuspendLayout();
-            this.tableLayoutPanel5.SuspendLayout();
-            this.tabPage3.SuspendLayout();
-            this.tableLayoutPanel7.SuspendLayout();
-            this.tabDirectMethod.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
-            this.tableLayoutPanel3.SuspendLayout();
-            this.SuspendLayout();
+            tabControl = new System.Windows.Forms.TabControl();
+            tabPage1 = new System.Windows.Forms.TabPage();
+            tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            btnStartReceiving = new System.Windows.Forms.Button();
+            btnStopReceiving = new System.Windows.Forms.Button();
+            tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            label2 = new System.Windows.Forms.Label();
+            tbMessageId = new System.Windows.Forms.TextBox();
+            tbCorrelationId = new System.Windows.Forms.TextBox();
+            label3 = new System.Windows.Forms.Label();
+            tbReceivedMsg = new System.Windows.Forms.TextBox();
+            btnSendToDevice = new System.Windows.Forms.Button();
+            tbSentMsg = new System.Windows.Forms.TextBox();
+            tabPage3 = new System.Windows.Forms.TabPage();
+            tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+            tbDTdesired = new System.Windows.Forms.TextBox();
+            btnReadDT = new System.Windows.Forms.Button();
+            tbDTRead = new System.Windows.Forms.TextBox();
+            btnWDesired = new System.Windows.Forms.Button();
+            tabDirectMethod = new System.Windows.Forms.TabPage();
+            label5 = new System.Windows.Forms.Label();
+            tbDirectMethodPayload = new System.Windows.Forms.TextBox();
+            label4 = new System.Windows.Forms.Label();
+            tbDirectMethodName = new System.Windows.Forms.TextBox();
+            btnSendRequest_DirectMethod = new System.Windows.Forms.Button();
+            lbStatus = new System.Windows.Forms.TextBox();
+            label1 = new System.Windows.Forms.Label();
+            tbDeviceId = new System.Windows.Forms.TextBox();
+            btnClean = new System.Windows.Forms.Button();
+            tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            tabControl.SuspendLayout();
+            tabPage1.SuspendLayout();
+            tableLayoutPanel4.SuspendLayout();
+            tableLayoutPanel6.SuspendLayout();
+            tableLayoutPanel5.SuspendLayout();
+            tabPage3.SuspendLayout();
+            tableLayoutPanel7.SuspendLayout();
+            tabDirectMethod.SuspendLayout();
+            tableLayoutPanel1.SuspendLayout();
+            tableLayoutPanel2.SuspendLayout();
+            tableLayoutPanel3.SuspendLayout();
+            SuspendLayout();
             // 
             // tabControl
             // 
-            this.tabControl.Controls.Add(this.tabPage1);
-            this.tabControl.Controls.Add(this.tabPage3);
-            this.tabControl.Controls.Add(this.tabDirectMethod);
-            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl.Location = new System.Drawing.Point(672, 2);
-            this.tabControl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabControl.Name = "tabControl";
-            this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(663, 747);
-            this.tabControl.TabIndex = 0;
+            tabControl.Controls.Add(tabPage1);
+            tabControl.Controls.Add(tabPage3);
+            tabControl.Controls.Add(tabDirectMethod);
+            tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            tabControl.Location = new System.Drawing.Point(672, 2);
+            tabControl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            tabControl.Name = "tabControl";
+            tabControl.SelectedIndex = 0;
+            tabControl.Size = new System.Drawing.Size(663, 747);
+            tabControl.TabIndex = 0;
             // 
             // tabPage1
             // 
-            this.tabPage1.BackColor = System.Drawing.Color.SteelBlue;
-            this.tabPage1.Controls.Add(this.tableLayoutPanel4);
-            this.tabPage1.Location = new System.Drawing.Point(4, 24);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage1.Size = new System.Drawing.Size(655, 719);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Receive from/Send to device";
+            tabPage1.BackColor = System.Drawing.Color.SteelBlue;
+            tabPage1.Controls.Add(tableLayoutPanel4);
+            tabPage1.Location = new System.Drawing.Point(4, 24);
+            tabPage1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            tabPage1.Size = new System.Drawing.Size(655, 719);
+            tabPage1.TabIndex = 0;
+            tabPage1.Text = "Receive from/Send to device";
             // 
             // tableLayoutPanel4
             // 
-            this.tableLayoutPanel4.ColumnCount = 2;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel6, 1, 2);
-            this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel5, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.tbReceivedMsg, 0, 2);
-            this.tableLayoutPanel4.Controls.Add(this.btnSendToDevice, 1, 0);
-            this.tableLayoutPanel4.Controls.Add(this.tbSentMsg, 0, 1);
-            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 2);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 3;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(649, 715);
-            this.tableLayoutPanel4.TabIndex = 9;
+            tableLayoutPanel4.ColumnCount = 2;
+            tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            tableLayoutPanel4.Controls.Add(tableLayoutPanel6, 1, 2);
+            tableLayoutPanel4.Controls.Add(tableLayoutPanel5, 0, 0);
+            tableLayoutPanel4.Controls.Add(tbReceivedMsg, 0, 2);
+            tableLayoutPanel4.Controls.Add(btnSendToDevice, 1, 0);
+            tableLayoutPanel4.Controls.Add(tbSentMsg, 0, 1);
+            tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            tableLayoutPanel4.Location = new System.Drawing.Point(3, 2);
+            tableLayoutPanel4.Name = "tableLayoutPanel4";
+            tableLayoutPanel4.RowCount = 3;
+            tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            tableLayoutPanel4.Size = new System.Drawing.Size(649, 715);
+            tableLayoutPanel4.TabIndex = 9;
             // 
             // tableLayoutPanel6
             // 
-            this.tableLayoutPanel6.ColumnCount = 1;
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Controls.Add(this.btnStartReceiving, 0, 0);
-            this.tableLayoutPanel6.Controls.Add(this.btnStopReceiving, 0, 1);
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(552, 410);
-            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-            this.tableLayoutPanel6.RowCount = 2;
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(94, 100);
-            this.tableLayoutPanel6.TabIndex = 10;
+            tableLayoutPanel6.ColumnCount = 1;
+            tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            tableLayoutPanel6.Controls.Add(btnStartReceiving, 0, 0);
+            tableLayoutPanel6.Controls.Add(btnStopReceiving, 0, 1);
+            tableLayoutPanel6.Location = new System.Drawing.Point(552, 410);
+            tableLayoutPanel6.Name = "tableLayoutPanel6";
+            tableLayoutPanel6.RowCount = 2;
+            tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            tableLayoutPanel6.Size = new System.Drawing.Size(94, 100);
+            tableLayoutPanel6.TabIndex = 10;
             // 
             // btnStartReceiving
             // 
-            this.btnStartReceiving.Location = new System.Drawing.Point(3, 2);
-            this.btnStartReceiving.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnStartReceiving.Name = "btnStartReceiving";
-            this.btnStartReceiving.Size = new System.Drawing.Size(80, 41);
-            this.btnStartReceiving.TabIndex = 1;
-            this.btnStartReceiving.Text = "Start receiving";
-            this.btnStartReceiving.UseVisualStyleBackColor = true;
-            this.btnStartReceiving.Click += new System.EventHandler(this.btnStartReceiving_Click);
+            btnStartReceiving.Location = new System.Drawing.Point(3, 2);
+            btnStartReceiving.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            btnStartReceiving.Name = "btnStartReceiving";
+            btnStartReceiving.Size = new System.Drawing.Size(80, 41);
+            btnStartReceiving.TabIndex = 1;
+            btnStartReceiving.Text = "Start receiving";
+            btnStartReceiving.UseVisualStyleBackColor = true;
+            btnStartReceiving.Click += btnStartReceiving_Click;
             // 
             // btnStopReceiving
             // 
-            this.btnStopReceiving.Location = new System.Drawing.Point(3, 53);
-            this.btnStopReceiving.Name = "btnStopReceiving";
-            this.btnStopReceiving.Size = new System.Drawing.Size(79, 43);
-            this.btnStopReceiving.TabIndex = 2;
-            this.btnStopReceiving.Text = "Stop receiving";
-            this.btnStopReceiving.UseVisualStyleBackColor = true;
-            this.btnStopReceiving.Click += new System.EventHandler(this.btnStopReceiving_Click);
+            btnStopReceiving.Location = new System.Drawing.Point(3, 53);
+            btnStopReceiving.Name = "btnStopReceiving";
+            btnStopReceiving.Size = new System.Drawing.Size(79, 43);
+            btnStopReceiving.TabIndex = 2;
+            btnStopReceiving.Text = "Stop receiving";
+            btnStopReceiving.UseVisualStyleBackColor = true;
+            btnStopReceiving.Click += btnStopReceiving_Click;
             // 
             // tableLayoutPanel5
             // 
-            this.tableLayoutPanel5.ColumnCount = 2;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Controls.Add(this.label2, 0, 0);
-            this.tableLayoutPanel5.Controls.Add(this.tbMessageId, 1, 0);
-            this.tableLayoutPanel5.Controls.Add(this.tbCorrelationId, 1, 1);
-            this.tableLayoutPanel5.Controls.Add(this.label3, 0, 1);
-            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 2;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(543, 94);
-            this.tableLayoutPanel5.TabIndex = 10;
+            tableLayoutPanel5.ColumnCount = 2;
+            tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            tableLayoutPanel5.Controls.Add(label2, 0, 0);
+            tableLayoutPanel5.Controls.Add(tbMessageId, 1, 0);
+            tableLayoutPanel5.Controls.Add(tbCorrelationId, 1, 1);
+            tableLayoutPanel5.Controls.Add(label3, 0, 1);
+            tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            tableLayoutPanel5.Location = new System.Drawing.Point(3, 3);
+            tableLayoutPanel5.Name = "tableLayoutPanel5";
+            tableLayoutPanel5.RowCount = 2;
+            tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            tableLayoutPanel5.Size = new System.Drawing.Size(543, 94);
+            tableLayoutPanel5.TabIndex = 10;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 15);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "MessageId";
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(3, 0);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(63, 15);
+            label2.TabIndex = 6;
+            label2.Text = "MessageId";
             // 
             // tbMessageId
             // 
-            this.tbMessageId.Location = new System.Drawing.Point(274, 2);
-            this.tbMessageId.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tbMessageId.Name = "tbMessageId";
-            this.tbMessageId.Size = new System.Drawing.Size(266, 23);
-            this.tbMessageId.TabIndex = 5;
+            tbMessageId.Location = new System.Drawing.Point(274, 2);
+            tbMessageId.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            tbMessageId.Name = "tbMessageId";
+            tbMessageId.Size = new System.Drawing.Size(266, 23);
+            tbMessageId.TabIndex = 5;
             // 
             // tbCorrelationId
             // 
-            this.tbCorrelationId.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbCorrelationId.Location = new System.Drawing.Point(274, 29);
-            this.tbCorrelationId.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tbCorrelationId.Name = "tbCorrelationId";
-            this.tbCorrelationId.Size = new System.Drawing.Size(266, 23);
-            this.tbCorrelationId.TabIndex = 7;
+            tbCorrelationId.Dock = System.Windows.Forms.DockStyle.Fill;
+            tbCorrelationId.Location = new System.Drawing.Point(274, 29);
+            tbCorrelationId.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            tbCorrelationId.Name = "tbCorrelationId";
+            tbCorrelationId.Size = new System.Drawing.Size(266, 23);
+            tbCorrelationId.TabIndex = 7;
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 27);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(76, 15);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "CorrelationId";
+            label3.AutoSize = true;
+            label3.Location = new System.Drawing.Point(3, 27);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(76, 15);
+            label3.TabIndex = 8;
+            label3.Text = "CorrelationId";
             // 
             // tbReceivedMsg
             // 
-            this.tbReceivedMsg.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.tbReceivedMsg.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbReceivedMsg.Location = new System.Drawing.Point(3, 409);
-            this.tbReceivedMsg.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tbReceivedMsg.Multiline = true;
-            this.tbReceivedMsg.Name = "tbReceivedMsg";
-            this.tbReceivedMsg.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.tbReceivedMsg.Size = new System.Drawing.Size(543, 304);
-            this.tbReceivedMsg.TabIndex = 4;
+            tbReceivedMsg.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            tbReceivedMsg.Dock = System.Windows.Forms.DockStyle.Fill;
+            tbReceivedMsg.Location = new System.Drawing.Point(3, 409);
+            tbReceivedMsg.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            tbReceivedMsg.Multiline = true;
+            tbReceivedMsg.Name = "tbReceivedMsg";
+            tbReceivedMsg.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            tbReceivedMsg.Size = new System.Drawing.Size(543, 304);
+            tbReceivedMsg.TabIndex = 4;
             // 
             // btnSendToDevice
             // 
-            this.btnSendToDevice.Location = new System.Drawing.Point(552, 2);
-            this.btnSendToDevice.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnSendToDevice.Name = "btnSendToDevice";
-            this.btnSendToDevice.Size = new System.Drawing.Size(77, 44);
-            this.btnSendToDevice.TabIndex = 0;
-            this.btnSendToDevice.Text = "Send To Device";
-            this.btnSendToDevice.UseVisualStyleBackColor = true;
-            this.btnSendToDevice.Click += new System.EventHandler(this.btnSendToDevice_Click);
+            btnSendToDevice.Location = new System.Drawing.Point(552, 2);
+            btnSendToDevice.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            btnSendToDevice.Name = "btnSendToDevice";
+            btnSendToDevice.Size = new System.Drawing.Size(77, 44);
+            btnSendToDevice.TabIndex = 0;
+            btnSendToDevice.Text = "Send To Device";
+            btnSendToDevice.UseVisualStyleBackColor = true;
+            btnSendToDevice.Click += btnSendToDevice_Click;
             // 
             // tbSentMsg
             // 
-            this.tbSentMsg.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbSentMsg.Location = new System.Drawing.Point(3, 102);
-            this.tbSentMsg.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tbSentMsg.Multiline = true;
-            this.tbSentMsg.Name = "tbSentMsg";
-            this.tbSentMsg.Size = new System.Drawing.Size(543, 303);
-            this.tbSentMsg.TabIndex = 1;
+            tbSentMsg.Dock = System.Windows.Forms.DockStyle.Fill;
+            tbSentMsg.Location = new System.Drawing.Point(3, 102);
+            tbSentMsg.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            tbSentMsg.Multiline = true;
+            tbSentMsg.Name = "tbSentMsg";
+            tbSentMsg.Size = new System.Drawing.Size(543, 303);
+            tbSentMsg.TabIndex = 1;
             // 
             // tabPage3
             // 
-            this.tabPage3.BackColor = System.Drawing.Color.SteelBlue;
-            this.tabPage3.Controls.Add(this.tableLayoutPanel7);
-            this.tabPage3.Location = new System.Drawing.Point(4, 24);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(655, 719);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "DeviceTwin";
+            tabPage3.BackColor = System.Drawing.Color.SteelBlue;
+            tabPage3.Controls.Add(tableLayoutPanel7);
+            tabPage3.Location = new System.Drawing.Point(4, 24);
+            tabPage3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            tabPage3.Name = "tabPage3";
+            tabPage3.Size = new System.Drawing.Size(655, 719);
+            tabPage3.TabIndex = 2;
+            tabPage3.Text = "DeviceTwin";
             // 
             // tableLayoutPanel7
             // 
-            this.tableLayoutPanel7.ColumnCount = 2;
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel7.Controls.Add(this.tbDTdesired, 0, 0);
-            this.tableLayoutPanel7.Controls.Add(this.btnReadDT, 1, 1);
-            this.tableLayoutPanel7.Controls.Add(this.tbDTRead, 0, 1);
-            this.tableLayoutPanel7.Controls.Add(this.btnWDesired, 1, 0);
-            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
-            this.tableLayoutPanel7.RowCount = 2;
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(655, 719);
-            this.tableLayoutPanel7.TabIndex = 7;
+            tableLayoutPanel7.ColumnCount = 2;
+            tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            tableLayoutPanel7.Controls.Add(tbDTdesired, 0, 0);
+            tableLayoutPanel7.Controls.Add(btnReadDT, 1, 1);
+            tableLayoutPanel7.Controls.Add(tbDTRead, 0, 1);
+            tableLayoutPanel7.Controls.Add(btnWDesired, 1, 0);
+            tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            tableLayoutPanel7.Location = new System.Drawing.Point(0, 0);
+            tableLayoutPanel7.Name = "tableLayoutPanel7";
+            tableLayoutPanel7.RowCount = 2;
+            tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            tableLayoutPanel7.Size = new System.Drawing.Size(655, 719);
+            tableLayoutPanel7.TabIndex = 7;
             // 
             // tbDTdesired
             // 
-            this.tbDTdesired.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbDTdesired.Location = new System.Drawing.Point(3, 2);
-            this.tbDTdesired.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tbDTdesired.Multiline = true;
-            this.tbDTdesired.Name = "tbDTdesired";
-            this.tbDTdesired.Size = new System.Drawing.Size(549, 355);
-            this.tbDTdesired.TabIndex = 5;
+            tbDTdesired.Dock = System.Windows.Forms.DockStyle.Fill;
+            tbDTdesired.Location = new System.Drawing.Point(3, 2);
+            tbDTdesired.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            tbDTdesired.Multiline = true;
+            tbDTdesired.Name = "tbDTdesired";
+            tbDTdesired.Size = new System.Drawing.Size(549, 355);
+            tbDTdesired.TabIndex = 5;
             // 
             // btnReadDT
             // 
-            this.btnReadDT.Location = new System.Drawing.Point(558, 361);
-            this.btnReadDT.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnReadDT.Name = "btnReadDT";
-            this.btnReadDT.Size = new System.Drawing.Size(94, 22);
-            this.btnReadDT.TabIndex = 1;
-            this.btnReadDT.Text = "read Device Twin";
-            this.btnReadDT.UseVisualStyleBackColor = true;
-            this.btnReadDT.Click += new System.EventHandler(this.btnRReported_Click);
+            btnReadDT.Location = new System.Drawing.Point(558, 361);
+            btnReadDT.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            btnReadDT.Name = "btnReadDT";
+            btnReadDT.Size = new System.Drawing.Size(94, 22);
+            btnReadDT.TabIndex = 1;
+            btnReadDT.Text = "read Device Twin";
+            btnReadDT.UseVisualStyleBackColor = true;
+            btnReadDT.Click += btnRReported_Click;
             // 
             // tbDTRead
             // 
-            this.tbDTRead.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.tbDTRead.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbDTRead.Location = new System.Drawing.Point(3, 361);
-            this.tbDTRead.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tbDTRead.Multiline = true;
-            this.tbDTRead.Name = "tbDTRead";
-            this.tbDTRead.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.tbDTRead.Size = new System.Drawing.Size(549, 356);
-            this.tbDTRead.TabIndex = 6;
-            this.tbDTRead.WordWrap = false;
+            tbDTRead.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            tbDTRead.Dock = System.Windows.Forms.DockStyle.Fill;
+            tbDTRead.Location = new System.Drawing.Point(3, 361);
+            tbDTRead.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            tbDTRead.Multiline = true;
+            tbDTRead.Name = "tbDTRead";
+            tbDTRead.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            tbDTRead.Size = new System.Drawing.Size(549, 356);
+            tbDTRead.TabIndex = 6;
+            tbDTRead.WordWrap = false;
             // 
             // btnWDesired
             // 
-            this.btnWDesired.Location = new System.Drawing.Point(558, 2);
-            this.btnWDesired.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnWDesired.Name = "btnWDesired";
-            this.btnWDesired.Size = new System.Drawing.Size(94, 22);
-            this.btnWDesired.TabIndex = 0;
-            this.btnWDesired.Text = "write Desired";
-            this.btnWDesired.UseVisualStyleBackColor = true;
-            this.btnWDesired.Click += new System.EventHandler(this.btnWDesired_Click);
+            btnWDesired.Location = new System.Drawing.Point(558, 2);
+            btnWDesired.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            btnWDesired.Name = "btnWDesired";
+            btnWDesired.Size = new System.Drawing.Size(94, 22);
+            btnWDesired.TabIndex = 0;
+            btnWDesired.Text = "write Desired";
+            btnWDesired.UseVisualStyleBackColor = true;
+            btnWDesired.Click += btnWDesired_Click;
             // 
             // tabDirectMethod
             // 
-            this.tabDirectMethod.BackColor = System.Drawing.Color.SteelBlue;
-            this.tabDirectMethod.Controls.Add(this.label5);
-            this.tabDirectMethod.Controls.Add(this.tbDirectMethodPayload);
-            this.tabDirectMethod.Controls.Add(this.label4);
-            this.tabDirectMethod.Controls.Add(this.tbDirectMethodName);
-            this.tabDirectMethod.Controls.Add(this.btnSendRequest_DirectMethod);
-            this.tabDirectMethod.Location = new System.Drawing.Point(4, 24);
-            this.tabDirectMethod.Name = "tabDirectMethod";
-            this.tabDirectMethod.Size = new System.Drawing.Size(655, 719);
-            this.tabDirectMethod.TabIndex = 3;
-            this.tabDirectMethod.Text = "Direct method";
+            tabDirectMethod.BackColor = System.Drawing.Color.SteelBlue;
+            tabDirectMethod.Controls.Add(label5);
+            tabDirectMethod.Controls.Add(tbDirectMethodPayload);
+            tabDirectMethod.Controls.Add(label4);
+            tabDirectMethod.Controls.Add(tbDirectMethodName);
+            tabDirectMethod.Controls.Add(btnSendRequest_DirectMethod);
+            tabDirectMethod.Location = new System.Drawing.Point(4, 24);
+            tabDirectMethod.Name = "tabDirectMethod";
+            tabDirectMethod.Size = new System.Drawing.Size(655, 719);
+            tabDirectMethod.TabIndex = 3;
+            tabDirectMethod.Text = "Direct method";
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(14, 106);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(128, 15);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Direct method payload";
+            label5.AutoSize = true;
+            label5.Location = new System.Drawing.Point(14, 106);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(128, 15);
+            label5.TabIndex = 4;
+            label5.Text = "Direct method payload";
             // 
             // tbDirectMethodPayload
             // 
-            this.tbDirectMethodPayload.Location = new System.Drawing.Point(158, 103);
-            this.tbDirectMethodPayload.Multiline = true;
-            this.tbDirectMethodPayload.Name = "tbDirectMethodPayload";
-            this.tbDirectMethodPayload.Size = new System.Drawing.Size(273, 187);
-            this.tbDirectMethodPayload.TabIndex = 3;
-            this.tbDirectMethodPayload.Text = "10";
+            tbDirectMethodPayload.Location = new System.Drawing.Point(158, 103);
+            tbDirectMethodPayload.Multiline = true;
+            tbDirectMethodPayload.Name = "tbDirectMethodPayload";
+            tbDirectMethodPayload.Size = new System.Drawing.Size(273, 187);
+            tbDirectMethodPayload.TabIndex = 3;
+            tbDirectMethodPayload.Text = "10";
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(14, 28);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(116, 15);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Direct method name";
+            label4.AutoSize = true;
+            label4.Location = new System.Drawing.Point(14, 28);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(116, 15);
+            label4.TabIndex = 2;
+            label4.Text = "Direct method name";
             // 
             // tbDirectMethodName
             // 
-            this.tbDirectMethodName.Location = new System.Drawing.Point(136, 25);
-            this.tbDirectMethodName.Name = "tbDirectMethodName";
-            this.tbDirectMethodName.Size = new System.Drawing.Size(370, 23);
-            this.tbDirectMethodName.TabIndex = 1;
-            this.tbDirectMethodName.Text = "SetTelemetryInterval";
+            tbDirectMethodName.Location = new System.Drawing.Point(136, 25);
+            tbDirectMethodName.Name = "tbDirectMethodName";
+            tbDirectMethodName.Size = new System.Drawing.Size(370, 23);
+            tbDirectMethodName.TabIndex = 1;
+            tbDirectMethodName.Text = "SetTelemetryInterval";
             // 
             // btnSendRequest_DirectMethod
             // 
-            this.btnSendRequest_DirectMethod.Location = new System.Drawing.Point(534, 16);
-            this.btnSendRequest_DirectMethod.Name = "btnSendRequest_DirectMethod";
-            this.btnSendRequest_DirectMethod.Size = new System.Drawing.Size(75, 94);
-            this.btnSendRequest_DirectMethod.TabIndex = 0;
-            this.btnSendRequest_DirectMethod.Text = "Send request through direct method";
-            this.btnSendRequest_DirectMethod.UseVisualStyleBackColor = true;
-            this.btnSendRequest_DirectMethod.Click += new System.EventHandler(this.btnSendRequest_DirectMethod_Click);
+            btnSendRequest_DirectMethod.Location = new System.Drawing.Point(534, 16);
+            btnSendRequest_DirectMethod.Name = "btnSendRequest_DirectMethod";
+            btnSendRequest_DirectMethod.Size = new System.Drawing.Size(75, 94);
+            btnSendRequest_DirectMethod.TabIndex = 0;
+            btnSendRequest_DirectMethod.Text = "Send request through direct method";
+            btnSendRequest_DirectMethod.UseVisualStyleBackColor = true;
+            btnSendRequest_DirectMethod.Click += btnSendRequest_DirectMethod_Click;
             // 
             // lbStatus
             // 
-            this.lbStatus.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.lbStatus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbStatus.Location = new System.Drawing.Point(3, 2);
-            this.lbStatus.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.lbStatus.Multiline = true;
-            this.lbStatus.Name = "lbStatus";
-            this.lbStatus.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.lbStatus.Size = new System.Drawing.Size(663, 747);
-            this.lbStatus.TabIndex = 0;
+            lbStatus.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            lbStatus.Dock = System.Windows.Forms.DockStyle.Fill;
+            lbStatus.Location = new System.Drawing.Point(3, 2);
+            lbStatus.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            lbStatus.Multiline = true;
+            lbStatus.Name = "lbStatus";
+            lbStatus.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            lbStatus.Size = new System.Drawing.Size(663, 747);
+            lbStatus.TabIndex = 0;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 15);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Device ID";
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(3, 0);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(56, 15);
+            label1.TabIndex = 2;
+            label1.Text = "Device ID";
             // 
             // tbDeviceId
             // 
-            this.tbDeviceId.Location = new System.Drawing.Point(65, 2);
-            this.tbDeviceId.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tbDeviceId.Name = "tbDeviceId";
-            this.tbDeviceId.ReadOnly = true;
-            this.tbDeviceId.Size = new System.Drawing.Size(197, 23);
-            this.tbDeviceId.TabIndex = 1;
-            this.tbDeviceId.Text = "iothubx509device1";
+            tbDeviceId.Location = new System.Drawing.Point(65, 2);
+            tbDeviceId.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            tbDeviceId.Name = "tbDeviceId";
+            tbDeviceId.ReadOnly = true;
+            tbDeviceId.Size = new System.Drawing.Size(197, 23);
+            tbDeviceId.TabIndex = 1;
+            tbDeviceId.Text = "iothubx509device1";
             // 
             // btnClean
             // 
-            this.btnClean.Location = new System.Drawing.Point(268, 3);
-            this.btnClean.Name = "btnClean";
-            this.btnClean.Size = new System.Drawing.Size(88, 22);
-            this.btnClean.TabIndex = 3;
-            this.btnClean.Text = "clean";
-            this.btnClean.UseVisualStyleBackColor = true;
-            this.btnClean.Click += new System.EventHandler(this.btnClean_Click);
+            btnClean.Location = new System.Drawing.Point(268, 3);
+            btnClean.Name = "btnClean";
+            btnClean.Size = new System.Drawing.Size(88, 22);
+            btnClean.TabIndex = 3;
+            btnClean.Text = "clean";
+            btnClean.UseVisualStyleBackColor = true;
+            btnClean.Click += btnClean_Click;
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 1);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.347826F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 95.65218F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1344, 791);
-            this.tableLayoutPanel1.TabIndex = 4;
+            tableLayoutPanel1.ColumnCount = 1;
+            tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 0, 0);
+            tableLayoutPanel1.Controls.Add(tableLayoutPanel3, 0, 1);
+            tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 2;
+            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.347826F));
+            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 95.65218F));
+            tableLayoutPanel1.Size = new System.Drawing.Size(1344, 791);
+            tableLayoutPanel1.TabIndex = 4;
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.ColumnCount = 3;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnClean, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.tbDeviceId, 1, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1338, 28);
-            this.tableLayoutPanel2.TabIndex = 0;
+            tableLayoutPanel2.ColumnCount = 3;
+            tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            tableLayoutPanel2.Controls.Add(label1, 0, 0);
+            tableLayoutPanel2.Controls.Add(btnClean, 2, 0);
+            tableLayoutPanel2.Controls.Add(tbDeviceId, 1, 0);
+            tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
+            tableLayoutPanel2.Name = "tableLayoutPanel2";
+            tableLayoutPanel2.RowCount = 1;
+            tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            tableLayoutPanel2.Size = new System.Drawing.Size(1338, 28);
+            tableLayoutPanel2.TabIndex = 0;
             // 
             // tableLayoutPanel3
             // 
-            this.tableLayoutPanel3.ColumnCount = 2;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Controls.Add(this.lbStatus, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.tabControl, 1, 0);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 37);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 1;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(1338, 751);
-            this.tableLayoutPanel3.TabIndex = 1;
+            tableLayoutPanel3.ColumnCount = 2;
+            tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            tableLayoutPanel3.Controls.Add(lbStatus, 0, 0);
+            tableLayoutPanel3.Controls.Add(tabControl, 1, 0);
+            tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            tableLayoutPanel3.Location = new System.Drawing.Point(3, 37);
+            tableLayoutPanel3.Name = "tableLayoutPanel3";
+            tableLayoutPanel3.RowCount = 1;
+            tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            tableLayoutPanel3.Size = new System.Drawing.Size(1338, 751);
+            tableLayoutPanel3.TabIndex = 1;
             // 
             // BackForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1344, 791);
-            this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "BackForm";
-            this.Text = "Backend";
-            this.Load += new System.EventHandler(this.BackForm_Load);
-            this.tabControl.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tableLayoutPanel4.ResumeLayout(false);
-            this.tableLayoutPanel4.PerformLayout();
-            this.tableLayoutPanel6.ResumeLayout(false);
-            this.tableLayoutPanel5.ResumeLayout(false);
-            this.tableLayoutPanel5.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
-            this.tableLayoutPanel7.ResumeLayout(false);
-            this.tableLayoutPanel7.PerformLayout();
-            this.tabDirectMethod.ResumeLayout(false);
-            this.tabDirectMethod.PerformLayout();
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
-            this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel3.PerformLayout();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            BackColor = System.Drawing.SystemColors.ActiveCaption;
+            ClientSize = new System.Drawing.Size(1344, 791);
+            Controls.Add(tableLayoutPanel1);
+            Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            Name = "BackForm";
+            Text = "Backend";
+            Load += BackForm_Load;
+            tabControl.ResumeLayout(false);
+            tabPage1.ResumeLayout(false);
+            tableLayoutPanel4.ResumeLayout(false);
+            tableLayoutPanel4.PerformLayout();
+            tableLayoutPanel6.ResumeLayout(false);
+            tableLayoutPanel5.ResumeLayout(false);
+            tableLayoutPanel5.PerformLayout();
+            tabPage3.ResumeLayout(false);
+            tableLayoutPanel7.ResumeLayout(false);
+            tableLayoutPanel7.PerformLayout();
+            tabDirectMethod.ResumeLayout(false);
+            tabDirectMethod.PerformLayout();
+            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel2.ResumeLayout(false);
+            tableLayoutPanel2.PerformLayout();
+            tableLayoutPanel3.ResumeLayout(false);
+            tableLayoutPanel3.PerformLayout();
+            ResumeLayout(false);
         }
 
         #endregion

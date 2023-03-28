@@ -5,7 +5,7 @@ namespace TestIssueForGit
 {
     internal static class Helper
     {
-        internal const string IdScope = "0ne00XXXXXX";
+        internal const string IdScope = "0ne0050D9A6";
 
         internal static X509Certificate2 LoadProvisioningCertificate(
             string certificateName= "deviceName-provisioning-cert.pem", 

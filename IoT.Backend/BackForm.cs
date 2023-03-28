@@ -2,6 +2,7 @@
 using Azure.Messaging.EventHubs.Consumer;
 using Azure.Messaging.EventHubs.Processor;
 using Azure.Storage.Blobs;
+using Microsoft.Azure.Amqp.Framing;
 using Microsoft.Azure.Devices;
 using Microsoft.Azure.Devices.Shared;
 using Newtonsoft.Json;
@@ -136,9 +137,11 @@ namespace IoT.Backend
 
         private async Task SendC2dMessagesAsync(CancellationToken cancellationToken)
         {
+            var messageId = Guid.NewGuid().ToString("D");
+            tbMessageId.Text = messageId;
             var message = new Message(Encoding.ASCII.GetBytes(tbSentMsg.Text))
             {
-                MessageId = tbMessageId.Text,
+                MessageId = messageId,
                 CorrelationId = tbCorrelationId.Text,
                 // An acknowledgment is sent on delivery success or failure.
                 Ack = DeliveryAcknowledgement.Full
@@ -201,7 +204,6 @@ namespace IoT.Backend
         private void BackForm_Load(object sender, EventArgs e)
         {
             CheckForIllegalCrossThreadCalls = false;
-            tbMessageId.Text = Guid.NewGuid().ToString("D");
             tbCorrelationId.Text = Guid.NewGuid().ToString("D");
         }
 

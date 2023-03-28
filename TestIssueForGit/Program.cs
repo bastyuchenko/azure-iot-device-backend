@@ -27,6 +27,8 @@ namespace TestIssueForGit
 
             var deviceClient = DeviceClient.Create(result.AssignedHub, auth, TransportType.Mqtt);
 
+            //await CleanUpMessages(CancellationToken.None, deviceClient);
+
             await deviceClient.SetReceiveMessageHandlerAsync(
                 async (Message messageC2D, object lbStatus) =>
                 {
@@ -47,6 +49,17 @@ namespace TestIssueForGit
                 }, null);
 
             await Task.Delay(-1);
+        }
+
+        public static async Task CleanUpMessages(CancellationToken runScenarioToken, DeviceClient _deviceClient)
+        {
+            var msg = await _deviceClient!.ReceiveAsync(TimeSpan.FromSeconds(1));
+            while (msg != null)
+            {
+                await _deviceClient.CompleteAsync(msg, runScenarioToken);
+                msg.Dispose();
+                msg = await _deviceClient.ReceiveAsync(TimeSpan.FromSeconds(1));
+            }
         }
     }
 }
